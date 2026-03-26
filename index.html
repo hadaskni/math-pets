@@ -38,7 +38,7 @@
             .card {
                 border-radius: 2.5rem;
                 border: 8px solid white;
-                min-height: 550px;
+                min-height: 600px;
                 padding: 2rem;
             }
         }
@@ -74,7 +74,7 @@
         @keyframes itemMoveToAnimal {
             0% { transform: translateY(-150px) scale(0.5) rotate(0deg); opacity: 0; }
             30% { transform: translateY(-100px) scale(1.2) rotate(15deg); opacity: 1; }
-            100% { transform: translateY(100px) scale(0) rotate(-15deg); opacity: 0; }
+            100% { transform: translateY(120px) scale(0) rotate(-15deg); opacity: 0; }
         }
 
         /* אנימציית קפיצה של החיה */
@@ -84,7 +84,7 @@
 
         @keyframes animalBounce {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2) translateY(-30px); }
+            50% { transform: scale(1.15) translateY(-25px); }
         }
 
         /* אפקט לבבות/ניצוצות */
@@ -194,20 +194,20 @@
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-6 mt-2 text-center">בחר חבר לדרך!</h2>
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
                     <button onclick="selectAnimal('dog')" class="option-btn bg-blue-50 hover:bg-blue-100 p-4 md:p-6 rounded-3xl border-2 border-blue-200 group">
-                        <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐶</span>`">
+                        <span class="h-20 w-20 md:h-28 md:w-28 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
+                            <img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-5xl md:text-7xl'>🐶</span>`" alt="dog">
                         </span>
                         <span class="font-bold text-blue-600 text-sm md:text-base">כלבלב</span>
                     </button>
                     <button onclick="selectAnimal('cat')" class="option-btn bg-pink-50 hover:bg-pink-100 p-4 md:p-6 rounded-3xl border-2 border-pink-200 group">
-                        <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐱</span>`">
+                        <span class="h-20 w-20 md:h-28 md:w-28 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
+                            <img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-5xl md:text-7xl'>🐱</span>`" alt="cat">
                         </span>
                         <span class="font-bold text-pink-600 text-sm md:text-base">חתלתול</span>
                     </button>
                     <button onclick="selectAnimal('rabbit')" class="option-btn bg-emerald-50 hover:bg-emerald-100 p-4 md:p-6 rounded-3xl border-2 border-emerald-200 group">
-                        <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐰</span>`">
+                        <span class="h-20 w-20 md:h-28 md:w-28 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
+                            <img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-5xl md:text-7xl'>🐰</span>`" alt="rabbit">
                         </span>
                         <span class="font-bold text-emerald-600 text-sm md:text-base">ארנב</span>
                     </button>
@@ -220,8 +220,8 @@
                 <div class="mb-4">
                     <input type="text" id="pet-name-input" placeholder="תן שם לחיה..." class="border-2 border-slate-300 rounded-xl px-4 py-2 text-center w-full max-w-xs focus:border-blue-500 focus:outline-none" onchange="updatePetName(this.value)">
                 </div>
-                <div class="flex flex-col items-center justify-center min-h-[250px] md:min-h-[300px]">
-                    <div id="lobby-animal-icon" class="h-40 w-40 md:h-48 md:w-48 flex items-center justify-center text-8xl md:text-9xl transition-all mb-4"></div>
+                <div class="flex flex-col items-center justify-center min-h-[300px] md:min-h-[350px]">
+                    <div id="lobby-animal-icon" class="h-56 w-56 md:h-72 md:w-72 flex items-center justify-center text-9xl md:text-[10rem] transition-all mb-4"></div>
                     <div id="lobby-mood-text" class="text-lg md:text-xl font-bold text-slate-500 bg-slate-100 px-4 py-1 rounded-full text-center">מצב רוח: ...</div>
                 </div>
                 <div class="grid grid-cols-1 gap-3 mt-4 w-full">
@@ -277,7 +277,7 @@
                     <div class="flex justify-between items-center w-full">
                         <div class="flex flex-col items-center">
                             <div class="relative">
-                                <div id="game-animal-icon" class="h-20 w-20 md:h-24 md:w-24 flex items-center justify-center text-5xl"></div>
+                                <div id="game-animal-icon" class="h-28 w-28 md:h-32 md:w-32 flex items-center justify-center text-6xl md:text-7xl"></div>
                                 <div id="combo-badge" class="absolute -top-2 -right-4 bg-orange-500 text-white text-xs font-black px-2 py-1 rounded-full shadow-md hidden animate-bounce">רצף x2!</div>
                             </div>
                             <div id="game-mood-text" class="text-[10px] md:text-xs font-bold text-slate-500 mt-1 text-center">מצב רוח: ...</div>
@@ -326,12 +326,12 @@
 
             <!-- Screen: Interaction -->
             <div id="screen-interact" class="screen w-full overflow-hidden">
-                <div class="relative py-12 flex flex-col items-center justify-center min-h-[350px] md:min-h-[440px]">
+                <div class="relative py-12 flex flex-col items-center justify-center min-h-[400px] md:min-h-[500px]">
                     <!-- הפריט שנופל -->
-                    <div id="interact-item" class="text-7xl md:text-8xl absolute z-20 transition-all opacity-0"></div>
+                    <div id="interact-item" class="text-7xl md:text-8xl absolute z-20 transition-all opacity-0" style="top: 0;"></div>
                     
                     <!-- החיה -->
-                    <div id="interact-animal" class="h-40 w-40 md:h-52 md:w-52 flex items-center justify-center text-9xl z-10 mt-16 transition-all relative">
+                    <div id="interact-animal" class="h-60 w-60 md:h-80 md:w-80 flex items-center justify-center text-9xl md:text-[12rem] z-10 mt-16 transition-all relative">
                     </div>
                     
                     <div id="interact-mood-text" class="text-lg font-bold text-slate-500 mt-2"></div>
@@ -646,8 +646,6 @@
             state.totalWallet -= item.price;
             let boost = 25;
             cat === 'food' ? state.hunger = Math.min(100, state.hunger + boost) : state.happiness = Math.min(100, state.happiness + boost);
-            
-            // עדכון המדדים בזיכרון, אבל לא נעדכן ויזואלית את הפרצוף מיד
             saveData();
             
             const itemEl = document.getElementById('interact-item');
@@ -655,6 +653,7 @@
             const textEl = document.getElementById('interact-text');
             const backBtn = document.getElementById('back-from-interact');
 
+            // איפוס מצב האלמנטים
             itemEl.innerText = item.icon;
             itemEl.classList.remove('item-swallow');
             animalEl.classList.remove('animal-react');
@@ -662,16 +661,18 @@
             backBtn.classList.add('opacity-0', 'pointer-events-none');
             itemEl.style.opacity = "1";
 
-            // מציג את מסך האינטראקציה עם הפרצוף הנוכחי (לפני האוכל)
+            // הבטחה שהחיה מוצגת מיד עם המעבר למסך (לפי המצב הנוכחי)
             updateAnimalVisuals(); 
             showScreen('screen-interact');
 
+            // תחילת רצף האנימציה
             setTimeout(() => {
+                // האוכל מתחיל ליפול
                 itemEl.classList.add('item-swallow');
                 
-                // רגע הפגיעה בחיה
+                // רגע הפגיעה בחיה (אחרי 500 מילי-שניות של נפילה)
                 setTimeout(() => {
-                    // שינוי לפרצוף הכי שמח (מספר 5 - אינדקס 4)
+                    // שינוי לפרצוף הכי שמח מיד כשהאוכל "מגיע"
                     const maxMood = animalMoods[state.animalType][4];
                     animalEl.innerHTML = maxMood.img;
                     
@@ -680,24 +681,24 @@
                     textEl.classList.remove('opacity-0');
                     backBtn.classList.remove('opacity-0', 'pointer-events-none');
                     
-                    // אפקט ניצוצות
-                    for(let i=0; i<8; i++) {
+                    // יצירת אפקט ניצוצות מרהיב
+                    for(let i=0; i<12; i++) {
                         const s = document.createElement('span');
                         s.innerText = cat === 'food' ? '❤️' : '✨';
-                        s.className = 'sparkle text-2xl';
-                        s.style.setProperty('--tw-x', (Math.random()*200-100)+'px');
-                        s.style.setProperty('--tw-y', (Math.random()*(-200))+'px');
+                        s.className = 'sparkle text-3xl';
+                        s.style.setProperty('--tw-x', (Math.random()*400-200)+'px');
+                        s.style.setProperty('--tw-y', (Math.random()*(-350))+'px');
                         animalEl.appendChild(s);
                         setTimeout(() => s.remove(), 1000);
                     }
 
-                    // לאחר השהיה של 1.5 שניות, מחזירים את הפרצוף למצב המקורי (לפי המדדים החדשים)
+                    // חזרה לפרצוף הרגיל (לפי המדדים החדשים) אחרי שהשמחה נרגעת
                     setTimeout(() => {
-                        updateWalletDisplay(); // זה יעדכן את הארנק ואת הפרצוף לפי המדד האמיתי
-                    }, 1500);
+                        updateWalletDisplay(); 
+                    }, 1800);
 
                 }, 500);
-            }, 100);
+            }, 150);
         }
 
         function resetAllData() { document.getElementById('reset-modal').classList.remove('hidden'); }
