@@ -131,9 +131,19 @@
         }
         .control-btn:hover { transform: scale(1.05); }
         .control-btn:active { transform: scale(0.95); }
+
+        /* מסתיר את הטוען מראש */
+        #preloader { position: absolute; width: 0; height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
+
+    <!-- Preloader Section -->
+    <div id="preloader">
+        <img src="dog1.png"> <img src="dog2.png"> <img src="dog3.png"> <img src="dog4.png"> <img src="dog5.png">
+        <img src="cat1.png"> <img src="cat2.png"> <img src="cat3.png"> <img src="cat4.png"> <img src="cat5.png">
+        <img src="rabbit1.png"> <img src="rabbit2.png"> <img src="rabbit3.png"> <img src="rabbit4.png"> <img src="rabbit5.png">
+    </div>
 
     <div class="max-w-xl w-full mx-auto relative">
         <!-- Top Bar -->
@@ -547,7 +557,6 @@
             let valid = [];
             state.selectedFactors.forEach(f => {
                 if (f === 'comp10') {
-                    // Completion to 10 (always plus in this logic, but follows mode)
                     if (state.mode === 'plus' || state.mode === 'mixed' || state.mode === 'missing') {
                         for (let i=0; i<=10; i++) valid.push({ type:'plus', n1:i, n2:10-i, ans:10, factorCtx:'comp10', forceMissing:true });
                     }
@@ -556,11 +565,9 @@
                     }
                 } else {
                     for (let i=0; i<=state.range; i++) {
-                        // Check if addition matches mode
                         if (state.mode === 'plus' || state.mode === 'mixed' || state.mode === 'missing') {
                             if (f+i <= state.range) valid.push({ type:'plus', n1:f, n2:i, ans:f+i, factorCtx:f });
                         }
-                        // Check if subtraction matches mode
                         if (state.mode === 'minus' || state.mode === 'mixed' || state.mode === 'missing') {
                             if (i>=f) valid.push({ type:'minus', n1:i, n2:f, ans:i-f, factorCtx:f });
                         }
@@ -665,7 +672,6 @@
             const textEl = document.getElementById('interact-text');
             const backBtn = document.getElementById('back-from-interact');
 
-            // איפוס מצב האלמנטים
             itemEl.innerText = item.icon;
             itemEl.classList.remove('item-swallow');
             animalEl.classList.remove('animal-react');
@@ -673,18 +679,13 @@
             backBtn.classList.add('opacity-0', 'pointer-events-none');
             itemEl.style.opacity = "1";
 
-            // הבטחה שהחיה מוצגת מיד עם המעבר למסך (לפי המצב הנוכחי)
             updateAnimalVisuals(); 
             showScreen('screen-interact');
 
-            // תחילת רצף האנימציה
             setTimeout(() => {
-                // האוכל מתחיל ליפול
                 itemEl.classList.add('item-swallow');
                 
-                // רגע הפגיעה בחיה (אחרי 500 מילי-שניות של נפילה)
                 setTimeout(() => {
-                    // שינוי לפרצוף הכי שמח מיד כשהאוכל "מגיע"
                     const maxMood = animalMoods[state.animalType][4];
                     animalEl.innerHTML = maxMood.img;
                     
@@ -693,7 +694,6 @@
                     textEl.classList.remove('opacity-0');
                     backBtn.classList.remove('opacity-0', 'pointer-events-none');
                     
-                    // יצירת אפקט ניצוצות מרהיב
                     for(let i=0; i<12; i++) {
                         const s = document.createElement('span');
                         s.innerText = cat === 'food' ? '❤️' : '✨';
@@ -704,7 +704,6 @@
                         setTimeout(() => s.remove(), 1000);
                     }
 
-                    // חזרה לפרצוף הרגיל (לפי המדדים החדשים) אחרי שהשמחה נרגעת
                     setTimeout(() => {
                         updateWalletDisplay(); 
                     }, 1800);
