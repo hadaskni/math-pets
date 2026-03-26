@@ -124,7 +124,6 @@
 </head>
 <body class="no-select">
 
-    <!-- Custom Modal for Reset -->
     <div id="reset-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl transform scale-95 transition-transform text-center border-4 border-red-100">
             <div class="text-5xl mb-4">⚠️</div>
@@ -171,19 +170,13 @@
             <!-- Right: Navigation -->
             <div class="flex gap-2 pointer-events-auto">
                 <button onclick="goToShop()" class="control-btn p-2.5 rounded-full text-slate-600 hover:text-purple-600 hover:border-purple-300" title="חנות החיות">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </button>
                 <button onclick="goToSettings()" class="control-btn p-2.5 rounded-full text-slate-600 hover:text-blue-600 hover:border-blue-300" title="הגדרות תרגול">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
                 </button>
                 <button onclick="goToHome()" class="control-btn p-2.5 rounded-full text-slate-600 hover:text-emerald-600 hover:border-emerald-300" title="חזרה לבית">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
                 </button>
             </div>
         </div>
@@ -198,16 +191,22 @@
                 
                 <h2 class="text-xl font-bold text-slate-700 mb-6 text-center">בחרו חבר לדרך:</h2>
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
-                    <button onclick="selectAnimal('dog')" class="option-btn bg-blue-50 hover:bg-blue-100 p-4 md:p-6 rounded-3xl border-2 border-blue-200 flex flex-col items-center">
-                        <span class="h-12 w-12 md:h-16 md:w-16 block mb-3 drop-shadow-md flex items-center justify-center"><img src="dog5.png" alt="כלבלב" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\'text-5xl md:text-6xl\'>🐶</span>'"></span>
+                    <button onclick="selectAnimal('dog')" class="option-btn bg-blue-50 hover:bg-blue-100 p-4 rounded-3xl border-2 border-blue-200 flex flex-col items-center group">
+                        <span id="btn-icon-dog" class="h-20 w-20 md:h-24 md:w-24 mb-3 drop-shadow-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <img src="dog5.png" alt="כלבלב" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\'text-6xl\'>🐶</span>'">
+                        </span>
                         <span class="font-bold text-blue-600">כלבלב</span>
                     </button>
-                    <button onclick="selectAnimal('cat')" class="option-btn bg-pink-50 hover:bg-pink-100 p-4 md:p-6 rounded-3xl border-2 border-pink-200 flex flex-col items-center">
-                        <span class="text-5xl md:text-6xl block mb-3 drop-shadow-md">🐱</span>
+                    <button onclick="selectAnimal('cat')" class="option-btn bg-pink-50 hover:bg-pink-100 p-4 rounded-3xl border-2 border-pink-200 flex flex-col items-center group">
+                        <span id="btn-icon-cat" class="h-20 w-20 md:h-24 md:w-24 mb-3 drop-shadow-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <img src="cat5.png" alt="חתלתול" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\'text-6xl\'>🐱</span>'">
+                        </span>
                         <span class="font-bold text-pink-600">חתלתול</span>
                     </button>
-                    <button onclick="selectAnimal('rabbit')" class="option-btn bg-emerald-50 hover:bg-emerald-100 p-4 md:p-6 rounded-3xl border-2 border-emerald-200 flex flex-col items-center">
-                        <span class="text-5xl md:text-6xl block mb-3 drop-shadow-md">🐰</span>
+                    <button onclick="selectAnimal('rabbit')" class="option-btn bg-emerald-50 hover:bg-emerald-100 p-4 rounded-3xl border-2 border-emerald-200 flex flex-col items-center group">
+                        <span id="btn-icon-rabbit" class="h-20 w-20 md:h-24 md:w-24 mb-3 drop-shadow-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <img src="rabbit5.png" alt="ארנב" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\'text-6xl\'>🐰</span>'">
+                        </span>
                         <span class="font-bold text-emerald-600">ארנב</span>
                     </button>
                 </div>
@@ -221,9 +220,9 @@
                     <input type="text" id="pet-name-input" placeholder="תנו שם לחיה..." class="border-2 border-indigo-100 bg-indigo-50/50 rounded-xl px-4 py-2 text-center w-full max-w-xs focus:border-indigo-400 focus:bg-white focus:outline-none transition-colors font-bold text-slate-700" onchange="updatePetName(this.value)">
                 </div>
 
-                <div class="flex flex-col items-center justify-center min-h-[220px]">
-                    <div id="lobby-animal-icon" class="h-40 w-40 flex items-center justify-center text-9xl transition-all mb-4 drop-shadow-lg"></div>
-                    <div id="lobby-mood-text" class="text-lg font-bold text-slate-600 bg-slate-100 px-6 py-1.5 rounded-full text-center border-2 border-slate-200">מצב רוח: ...</div>
+                <div class="flex flex-col items-center justify-center min-h-[220px] relative">
+                    <div id="lobby-animal-icon" class="h-48 w-48 flex items-center justify-center transition-all mb-4 drop-shadow-xl z-10"></div>
+                    <div id="lobby-mood-text" class="text-lg font-bold text-slate-600 bg-slate-100 px-6 py-1.5 rounded-full text-center border-2 border-slate-200 mt-2">מצב רוח: ...</div>
                 </div>
                 
                 <div class="grid grid-cols-1 gap-3 mt-6 w-full">
@@ -281,18 +280,13 @@
                     <p class="text-indigo-600 font-bold text-center text-xs bg-indigo-50 py-1 px-3 rounded-full border border-indigo-100">(למשל: לתרגול של +1, סמנו רק את 1)</p>
                 </div>
                 
-                <!-- NEW: כפתורים מהירים לבחירה וניקוי -->
                 <div class="flex justify-center gap-3 mb-5 mt-2">
                     <button onclick="selectAllNumbers()" class="text-sm font-bold text-blue-600 hover:text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-200 shadow-sm transition-all active:scale-95">בחר הכל ✓</button>
                     <button onclick="clearAllNumbers()" class="text-sm font-bold text-slate-500 hover:text-slate-700 bg-slate-100 px-4 py-1.5 rounded-full border border-slate-200 shadow-sm transition-all active:scale-95">נקה הכל ✗</button>
                 </div>
                 
-                <div id="numbers-grid-1" class="grid grid-cols-5 gap-2 mb-3">
-                    <!-- Numbers 1 to 10 generated by JS -->
-                </div>
-                <div id="numbers-grid-2" class="grid grid-cols-2 gap-3 mb-8">
-                    <!-- Twins, Comp10 generated by JS -->
-                </div>
+                <div id="numbers-grid-1" class="grid grid-cols-5 gap-2 mb-3"></div>
+                <div id="numbers-grid-2" class="grid grid-cols-2 gap-3 mb-8"></div>
                 
                 <button id="btn-continue-mode" onclick="showScreen('screen-mode')" class="w-full bg-slate-200 text-slate-400 font-black py-4 rounded-2xl transition-all text-xl">
                     המשך לשלב הבא ➔
@@ -334,13 +328,12 @@
                 </button>
 
                 <div class="flex justify-between items-center w-full mb-6 bg-slate-100 p-3 rounded-2xl">
-                    <!-- Icon container -->
                     <div class="flex items-center gap-3">
                         <div class="relative">
-                            <div id="game-animal-icon" class="h-14 w-14 flex items-center justify-center text-4xl bg-white rounded-full shadow-sm border-2 border-slate-200"></div>
-                            <div id="combo-badge" class="absolute -top-3 -right-3 bg-gradient-to-r from-orange-400 to-red-500 text-white text-[10px] font-black px-2 py-1 rounded-full shadow-md hidden animate-bounce border-2 border-white">
-                                רצף x2!
+                            <div id="game-animal-container" class="h-16 w-16 flex items-center justify-center bg-white rounded-full shadow-sm border-2 border-slate-200 p-1 relative">
+                                <div id="game-animal-icon" class="h-full w-full flex items-center justify-center"></div>
                             </div>
+                            <div id="combo-badge" class="absolute -top-3 -right-3 bg-gradient-to-r from-orange-400 to-red-500 text-white text-[10px] font-black px-2 py-1 rounded-full shadow-md hidden animate-bounce border-2 border-white">רצף x2!</div>
                         </div>
                         <div class="text-right">
                             <div id="game-mood-text" class="text-xs font-bold text-slate-500">מצב: רגיל</div>
@@ -410,7 +403,7 @@
             <div id="screen-interact" class="screen">
                 <div class="relative py-12 flex flex-col items-center justify-center min-h-[350px]">
                     <div id="interact-item" class="text-7xl mb-4 z-20 transition-all drop-shadow-lg"></div>
-                    <div id="interact-animal" class="h-32 w-32 flex items-center justify-center text-9xl z-10 mt-8 transition-all drop-shadow-xl"></div>
+                    <div id="interact-animal" class="h-32 w-32 md:h-48 md:w-48 flex items-center justify-center z-10 mt-8 transition-all relative"></div>
                     <div id="interact-mood-text" class="text-lg font-bold text-slate-500 mt-6 bg-slate-100 px-4 py-1 rounded-full"></div>
                     <div id="interact-text" class="mt-4 text-2xl font-black text-indigo-600 opacity-0 transition-opacity bg-indigo-50 px-6 py-2 rounded-2xl border-2 border-indigo-100">יאמי!</div>
                 </div>
@@ -422,25 +415,29 @@
     </div>
 
     <script>
+        // --- הגדרת תמונות ה-PNG החיצוניות שיצרת ---
+
         const animalMoods = {
             dog: [
-                { img: '<img src="dog1.png" alt="עצוב" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML=\'😿\'">', label: 'עצוב ורעב מאוד' },
-                { img: '<img src="dog2.png" alt="רעב" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML=\'🐶\'">', label: 'רעב' },
-                { img: '<img src="dog3.png" alt="רגיל" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML=\'🐕\'">', label: 'רגיל' },
-                { img: '<img src="dog4.png" alt="שמח" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML=\'🤩\'">', label: 'שמח' },
-                { img: '<img src="dog5.png" alt="מאושר" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML=\'👑\'">', label: 'גדול ומאושר!' }
+                { imgFile: 'dog1.png', fallback: '😿', label: 'עצוב ורעב מאוד' },
+                { imgFile: 'dog2.png', fallback: '🐶💧', label: 'רעב' },
+                { imgFile: 'dog3.png', fallback: '🐶', label: 'רגיל' },
+                { imgFile: 'dog4.png', fallback: '🤩', label: 'שמח' },
+                { imgFile: 'dog5.png', fallback: '💖🐶', label: 'גדול ומאושר!' }
             ],
             cat: [
-                { img: '😾', label: 'רעב ועצוב' },
-                { img: '🐱', label: 'רגיל' },
-                { img: '🐈', label: 'שמח' },
-                { img: '😻', label: 'מאושר!' }
+                { imgFile: 'cat1.png', fallback: '😾', label: 'עצוב ורעב מאוד' },
+                { imgFile: 'cat2.png', fallback: '🐱💧', label: 'רעב' },
+                { imgFile: 'cat3.png', fallback: '🐱', label: 'רגיל' },
+                { imgFile: 'cat4.png', fallback: '😻', label: 'שמח' },
+                { imgFile: 'cat5.png', fallback: '💖🐱', label: 'גדול ומאושר!' }
             ],
             rabbit: [
-                { img: '🐰💧', label: 'רעב ועצוב' },
-                { img: '🐰', label: 'רגיל' },
-                { img: '🐇', label: 'שמח' },
-                { img: '💖🐰', label: 'מאושר!' }
+                { imgFile: 'rabbit1.png', fallback: '🐰💧', label: 'עצוב ורעב מאוד' },
+                { imgFile: 'rabbit2.png', fallback: '🐰', label: 'רעב' },
+                { imgFile: 'rabbit3.png', fallback: '🐇', label: 'רגיל' },
+                { imgFile: 'rabbit4.png', fallback: '💖', label: 'שמח' },
+                { imgFile: 'rabbit5.png', fallback: '👑🐰', label: 'גדול ומאושר!' }
             ]
         };
 
@@ -631,8 +628,8 @@
         
         function abortGame() {
             state.sessionScore = 0; 
-            renderNumberButtons(); // מבטיח שהמספרים מוכנים
-            showScreen('screen-numbers'); // כעת מחזיר אותך ישר לבחירת מספרים!
+            renderNumberButtons();
+            showScreen('screen-numbers');
         }
         
         function goToHome() { 
@@ -694,27 +691,20 @@
             
             const averageMood = (state.hunger + state.happiness) / 2;
             let index = 0;
-            
-            // תמיכה דינמית: אם יש 5 תמונות נחלק את 100 ל-5 שלבים, אחרת ל-4 שלבים
-            const totalMoods = animalMoods[state.animalType].length;
-            if (totalMoods === 5) {
-                if (averageMood > 20) index = 1;
-                if (averageMood > 40) index = 2;
-                if (averageMood > 60) index = 3;
-                if (averageMood > 80) index = 4;
-            } else {
-                if (averageMood > 25) index = 1;
-                if (averageMood > 60) index = 2;
-                if (averageMood > 85) index = 3;
-            }
+            if (averageMood > 20) index = 1;
+            if (averageMood > 40) index = 2;
+            if (averageMood > 60) index = 3;
+            if (averageMood > 80) index = 4;
 
+            // שימוש בתמונות המותאמות למצב הרוח מהמערך שקבענו
             const moodData = animalMoods[state.animalType][index];
-            const visual = moodData.img;
             const label = moodData.label;
+            const visualHTML = `<img src="${moodData.imgFile}" alt="${label}" class="w-full h-full object-contain drop-shadow-md" onerror="this.outerHTML='<span class=\\'text-7xl\\'>${moodData.fallback}</span>'">`;
 
+            // עדכון התמונה בכל המסכים
             ['game-animal-icon', 'interact-animal', 'lobby-animal-icon'].forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.innerHTML = visual;
+                if (el) el.innerHTML = visualHTML;
             });
 
             const moodText = document.getElementById('game-mood-text');
@@ -737,7 +727,6 @@
             saveData();
         }
 
-        // --- Number Selection Logic ---
         function selectRange(r) {
             try {
                 state.range = r;
@@ -1027,7 +1016,6 @@
                 }
 
                 btn.className = "option-btn bg-emerald-500 text-white text-4xl font-black py-6 rounded-2xl border-emerald-600 shadow-inner";
-                // התיקון: נועלים אך ורק את כפתורי התשובות ולא את כל הכפתורים באפליקציה
                 document.querySelectorAll('#answers-grid .option-btn').forEach(b => b.disabled = true);
                 
                 if (card) {
@@ -1038,7 +1026,6 @@
                 saveData();
                 setTimeout(() => { 
                     document.getElementById('coin-emitter').innerHTML = ''; 
-                    // מוודאים שאנחנו עדיין במסך המשחק לפני שעוברים לשאלה הבאה
                     if (state.currentScreen === 'screen-game') {
                         nextQuestion(); 
                     }
