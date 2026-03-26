@@ -169,7 +169,6 @@
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
                     <button onclick="selectAnimal('dog')" class="option-btn bg-blue-50 hover:bg-blue-100 p-4 md:p-6 rounded-3xl border-2 border-blue-200 group">
                         <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <!-- שימוש ב-Backticks במקום בגרשיים בתוך ה-onerror כדי למנוע שגיאות תכנות -->
                             <img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐶</span>`">
                         </span>
                         <span class="font-bold text-blue-600 text-sm md:text-base">כלבלב</span>
@@ -240,7 +239,7 @@
             <!-- Screen: Factor Select -->
             <div id="screen-factor" class="screen w-full relative">
                 <button onclick="goBack('screen-range')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
-                <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-6 text-center">בחר כפולות של:</h2>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-6 text-center">בחר תרגול:</h2>
                 <p class="text-sm text-slate-500 mb-6">אפשר לבחור כמה ביחד!</p>
                 
                 <div id="factor-grid" class="grid grid-cols-4 gap-2 md:gap-3 mb-6 place-content-center">
@@ -363,7 +362,6 @@
     </div>
 
     <script>
-        // שימוש ב-backticks מתקן את השגיאה של "Unexpected identifier" לחלוטין
         const animalMoods = {
             dog: [
                 { img: `<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😿'" alt="עצוב">`, label: 'עצוב ורעב' },
@@ -932,6 +930,12 @@
                 btn.className = "option-btn bg-red-100 text-red-500 text-4xl font-black py-6 rounded-3xl border-red-200 opacity-50";
                 btn.disabled = true;
             }
+        }
+        
+        function showSummary() {
+            const finalCoinsEl = document.getElementById('final-session-coins');
+            if (finalCoinsEl) finalCoinsEl.innerText = state.sessionScore;
+            showScreen('screen-summary');
         }
 
         function showShopTab(tab) {
