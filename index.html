@@ -66,6 +66,40 @@
             100% { transform: scale(1) translateY(-100px); opacity: 0; }
         }
 
+        /* אנימציית הפריט שנופל לחיה */
+        .item-swallow {
+            animation: itemMoveToAnimal 0.8s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+        }
+
+        @keyframes itemMoveToAnimal {
+            0% { transform: translateY(-150px) scale(0.5) rotate(0deg); opacity: 0; }
+            30% { transform: translateY(-100px) scale(1.2) rotate(15deg); opacity: 1; }
+            100% { transform: translateY(100px) scale(0) rotate(-15deg); opacity: 0; }
+        }
+
+        /* אנימציית קפיצה של החיה */
+        .animal-react {
+            animation: animalBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes animalBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2) translateY(-30px); }
+        }
+
+        /* אפקט לבבות/ניצוצות */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkleFloat 1s ease-out forwards;
+        }
+
+        @keyframes sparkleFloat {
+            0% { transform: translate(0, 0) scale(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(var(--tw-x), var(--tw-y)) scale(1.5); opacity: 0; }
+        }
+
         .ltr { direction: ltr; unicode-bidi: bidi-override; }
 
         .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
@@ -83,12 +117,6 @@
             100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
         }
         
-        .trophy-bounce { animation: trophyBounce 1s cubic-bezier(0.36, 0, 0.66, -0.56) infinite alternate; }
-        @keyframes trophyBounce {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-10px) scale(1.05); }
-        }
-
         .meter-fill { transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .control-btn {
@@ -110,7 +138,6 @@
     <div class="max-w-xl w-full mx-auto relative">
         <!-- Top Bar -->
         <div class="fixed top-2 left-2 right-2 z-50 flex justify-between items-start pointer-events-none px-1">
-            <!-- Left: Wallet & Meters -->
             <div class="flex flex-col gap-1 pointer-events-auto">
                 <div class="bg-white/90 backdrop-blur px-3 py-1 rounded-full border-2 border-yellow-400 shadow-lg flex items-center gap-2 w-fit transform scale-90 origin-top-left md:scale-100">
                     <span class="text-lg">💰</span>
@@ -140,20 +167,19 @@
                 </div>
             </div>
 
-            <!-- Right: Navigation -->
             <div class="flex gap-1.5 pointer-events-auto">
-                <button onclick="goToShop()" class="control-btn p-2 rounded-full text-slate-600 hover:text-purple-600 hover:border-purple-200" title="חנות החיות">
+                <button onclick="goToShop()" class="control-btn p-2 rounded-full text-slate-600 hover:text-purple-600 hover:border-purple-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </button>
-                <button onclick="goToSettings()" class="control-btn p-2 rounded-full text-slate-600 hover:text-blue-600 hover:border-blue-200" title="הגדרות תרגול">
+                <button onclick="goToSettings()" class="control-btn p-2 rounded-full text-slate-600 hover:text-blue-600 hover:border-blue-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                 </button>
-                <button onclick="goToHome()" class="control-btn p-2 rounded-full text-slate-600 hover:text-emerald-600 hover:border-emerald-200" title="חזרה לראשי">
+                <button onclick="goToHome()" class="control-btn p-2 rounded-full text-slate-600 hover:text-emerald-600 hover:border-emerald-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
@@ -163,7 +189,7 @@
 
         <div id="main-card" class="card text-center relative mt-20 md:mt-24 mx-auto">
             
-            <!-- Screen: Animal Select (Initial) -->
+            <!-- Screen: Animal Select -->
             <div id="screen-animal" class="screen active w-full">
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-6 mt-2 text-center">בחר חבר לדרך!</h2>
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
@@ -191,27 +217,20 @@
             <!-- Screen: Lobby -->
             <div id="screen-lobby" class="screen w-full">
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-4 text-center">הבית של <span id="lobby-pet-name"></span></h2>
-                
                 <div class="mb-4">
                     <input type="text" id="pet-name-input" placeholder="תן שם לחיה..." class="border-2 border-slate-300 rounded-xl px-4 py-2 text-center w-full max-w-xs focus:border-blue-500 focus:outline-none" onchange="updatePetName(this.value)">
                 </div>
-
                 <div class="flex flex-col items-center justify-center min-h-[250px] md:min-h-[300px]">
                     <div id="lobby-animal-icon" class="h-40 w-40 md:h-48 md:w-48 flex items-center justify-center text-8xl md:text-9xl transition-all mb-4"></div>
                     <div id="lobby-mood-text" class="text-lg md:text-xl font-bold text-slate-500 bg-slate-100 px-4 py-1 rounded-full text-center">מצב רוח: ...</div>
                 </div>
-                
                 <div class="grid grid-cols-1 gap-3 mt-4 w-full">
                     <button onclick="goToSettings()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl flex items-center justify-center gap-2">
                         <span>▶️</span> התחל תרגול
                     </button>
                     <div class="grid grid-cols-2 gap-3">
-                        <button onclick="openShop()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-2xl shadow-md text-sm md:text-base">
-                            🛍️ לחנות
-                        </button>
-                        <button onclick="showScreen('screen-animal')" class="bg-slate-200 hover:bg-slate-300 text-slate-600 font-bold py-3 rounded-2xl shadow-md text-sm md:text-base">
-                            🔄 החלף חיה
-                        </button>
+                        <button onclick="openShop()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-2xl shadow-md text-sm md:text-base">🛍️ לחנות</button>
+                        <button onclick="showScreen('screen-animal')" class="bg-slate-200 hover:bg-slate-300 text-slate-600 font-bold py-3 rounded-2xl shadow-md text-sm md:text-base">🔄 החלף חיה</button>
                     </div>
                 </div>
             </div>
@@ -228,12 +247,7 @@
                         <span class="text-4xl md:text-5xl font-black text-purple-600">עד 20</span>
                     </button>
                 </div>
-                
-                <div class="mt-12 text-center">
-                    <button onclick="resetAllData()" class="flex items-center justify-center gap-2 mx-auto px-6 py-3 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors font-bold text-xs md:text-sm">
-                        איפוס משחק והתחלה מחדש
-                    </button>
-                </div>
+                <button onclick="resetAllData()" class="mt-12 flex items-center justify-center gap-2 mx-auto px-6 py-3 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors font-bold text-xs">איפוס משחק והתחלה מחדש</button>
             </div>
 
             <!-- Screen: Factor Select -->
@@ -241,20 +255,8 @@
                 <button onclick="goBack('screen-range')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-6 text-center">בחר תרגול:</h2>
                 <p class="text-sm text-slate-500 mb-6">אפשר לבחור כמה ביחד!</p>
-                
-                <div id="factor-grid" class="grid grid-cols-4 gap-2 md:gap-3 mb-6 place-content-center">
-                    <!-- Buttons generated by JS -->
-                </div>
-                
-                <button id="btn-continue-mode" onclick="showScreen('screen-mode')" class="w-full bg-slate-300 text-white font-black py-4 rounded-2xl shadow-lg text-lg md:text-xl transition-all" disabled>
-                    המשך לבחירת סוג ➔
-                </button>
-                
-                <div class="mt-8 text-center">
-                    <button onclick="resetAllData()" class="flex items-center justify-center gap-2 mx-auto px-6 py-3 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors font-bold text-xs md:text-sm">
-                        איפוס משחק והתחלה מחדש
-                    </button>
-                </div>
+                <div id="factor-grid" class="grid grid-cols-4 gap-2 md:gap-3 mb-6 place-content-center"></div>
+                <button id="btn-continue-mode" onclick="showScreen('screen-mode')" class="w-full bg-slate-300 text-white font-black py-4 rounded-2xl shadow-lg text-lg md:text-xl transition-all" disabled>המשך לבחירת סוג ➔</button>
             </div>
 
             <!-- Screen: Mode Select -->
@@ -276,11 +278,9 @@
                         <div class="flex flex-col items-center">
                             <div class="relative">
                                 <div id="game-animal-icon" class="h-20 w-20 md:h-24 md:w-24 flex items-center justify-center text-5xl"></div>
-                                <div id="combo-badge" class="absolute -top-2 -right-4 bg-orange-500 text-white text-xs font-black px-2 py-1 rounded-full shadow-md hidden animate-bounce">
-                                    רצף x2!
-                                </div>
+                                <div id="combo-badge" class="absolute -top-2 -right-4 bg-orange-500 text-white text-xs font-black px-2 py-1 rounded-full shadow-md hidden animate-bounce">רצף x2!</div>
                             </div>
-                            <div id="game-mood-text" class="text-[10px] md:text-xs font-bold text-slate-500 mt-1 text-center">מצב רוח: עצוב</div>
+                            <div id="game-mood-text" class="text-[10px] md:text-xs font-bold text-slate-500 mt-1 text-center">מצב רוח: ...</div>
                         </div>
                         <div class="bg-yellow-100 px-4 py-2 rounded-full border-2 border-yellow-400 flex items-center gap-2">
                             <span class="text-xl">💰</span>
@@ -289,20 +289,16 @@
                         <div id="progress-display" class="text-slate-400 font-bold text-xs md:text-sm text-center">תרגיל 1/12</div>
                     </div>
                 </div>
-
                 <div id="card" class="bg-slate-50 rounded-[2rem] p-6 md:p-10 mb-6 md:mb-8 border-4 border-dashed border-slate-200 relative overflow-visible w-full flex justify-center items-center">
                     <div id="coin-emitter" class="absolute inset-0 flex items-center justify-center pointer-events-none z-50"></div>
                     <div id="math-display" class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-800 ltr whitespace-nowrap"></div>
                 </div>
-
                 <div id="answers-grid" class="grid grid-cols-2 gap-3 md:gap-4 ltr w-full"></div>
             </div>
 
             <!-- Screen: Summary -->
             <div id="screen-summary" class="screen w-full">
-                <h2 id="summary-title" class="text-3xl md:text-4xl font-black text-slate-800 mb-2 mt-4 text-center">סיימת!</h2>
-                <div id="summary-trophy" class="mb-4 md:mb-8 flex justify-center"></div>
-                
+                <h2 id="summary-title" class="text-3xl md:text-4xl font-black text-slate-800 mb-4 mt-4 text-center">סיימת!</h2>
                 <p class="text-lg md:text-xl text-slate-600 mb-4 text-center">אספת בסבב זה:</p>
                 <div class="flex justify-center mb-8">
                     <div class="inline-flex items-center gap-4 bg-yellow-50 p-4 px-8 rounded-full border-4 border-yellow-400 shadow-lg">
@@ -311,52 +307,51 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-3">
-                    <button onclick="selectMode(state.mode)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl">
-                        המשך תרגול ↺
-                    </button>
-                    <button onclick="goToSettings()" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl">
-                         בחר תרגילים חדשים ⚙️
-                    </button>
-                    <button onclick="openShop()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl flex items-center justify-center gap-2">
-                        לחנות 🛒
-                    </button>
+                    <button onclick="selectMode(state.mode)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl">המשך תרגול ↺</button>
+                    <button onclick="goToSettings()" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl">בחר תרגילים חדשים ⚙️</button>
+                    <button onclick="openShop()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl">לחנות 🛒</button>
                 </div>
             </div>
 
             <!-- Screen: Shop -->
             <div id="screen-shop" class="screen w-full relative">
                 <button onclick="goBackFromShop()" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
-                
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-4 md:mb-6 mt-8 text-center">חנות החיות 🛍️</h2>
                 <div class="flex gap-2 mb-4 md:mb-6">
-                    <button onclick="showShopTab('food')" id="tab-food" class="flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white transition-all text-sm md:text-base">אוכל 🍎</button>
-                    <button onclick="showShopTab('toys')" id="tab-toys" class="flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400 transition-all text-sm md:text-base">שעשועים 🧸</button>
+                    <button onclick="showShopTab('food')" id="tab-food" class="flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white transition-all text-sm">אוכל 🍎</button>
+                    <button onclick="showShopTab('toys')" id="tab-toys" class="flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400 transition-all text-sm">שעשועים 🧸</button>
                 </div>
                 <div id="shop-items" class="grid grid-cols-2 gap-3 h-[280px] overflow-y-auto p-2 border-2 border-slate-100 rounded-2xl bg-slate-50/50"></div>
             </div>
 
-            <!-- Screen: Interaction -->
-            <div id="screen-interact" class="screen w-full">
+            <!-- Screen: Interaction (Animates here) -->
+            <div id="screen-interact" class="screen w-full overflow-hidden">
                 <div class="relative py-12 flex flex-col items-center justify-center min-h-[350px] md:min-h-[440px]">
-                    <div id="interact-item" class="text-7xl md:text-8xl mb-4 z-20 transition-all"></div>
-                    <div id="interact-animal" class="h-32 w-32 md:h-40 md:w-40 flex items-center justify-center text-9xl z-10 mt-4 md:mt-8 transition-all"></div>
-                    <div id="interact-mood-text" class="text-lg md:text-xl font-bold text-slate-500 mt-2 text-center"></div>
-                    <div id="interact-text" class="mt-4 text-xl md:text-2xl font-black text-indigo-600 opacity-0 transition-opacity text-center">יאמי!</div>
+                    <!-- The Item that falls -->
+                    <div id="interact-item" class="text-7xl md:text-8xl absolute z-20 transition-all opacity-0"></div>
+                    
+                    <!-- The Pet -->
+                    <div id="interact-animal" class="h-40 w-40 md:h-52 md:w-52 flex items-center justify-center text-9xl z-10 mt-16 transition-all relative">
+                        <!-- Sparkles will be added here via JS -->
+                    </div>
+                    
+                    <div id="interact-mood-text" class="text-lg font-bold text-slate-500 mt-2"></div>
+                    <div id="interact-text" class="mt-4 text-2xl md:text-3xl font-black text-indigo-600 opacity-0 transition-opacity text-center">יאמי!</div>
                 </div>
-                <button id="back-from-interact" onclick="goBackFromShop()" class="w-full bg-slate-800 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl mt-4 opacity-0 pointer-events-none transition-opacity">חזרה</button>
+                <button id="back-from-interact" onclick="goBackFromShop()" class="w-full bg-slate-800 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl mt-4 opacity-0 pointer-events-none transition-opacity">חזרה למשחק</button>
             </div>
         </div>
     </div>
 
     <!-- Modal Reset -->
     <div id="reset-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl transform scale-95 transition-transform text-center border-4 border-red-100">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-center border-4 border-red-100">
             <div class="text-5xl mb-4">⚠️</div>
             <h3 class="text-2xl font-black text-slate-800 mb-2">לאפס הכל?</h3>
-            <p class="text-slate-600 mb-6 font-bold">הכסף, החיה וכל ההתקדמות יימחקו לחלוטין. האם אתם בטוחים?</p>
+            <p class="text-slate-600 mb-6 font-bold">הכסף, החיה וכל ההתקדמות יימחקו לחלוטין.</p>
             <div class="flex gap-3">
-                <button onclick="confirmReset()" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-xl transition-colors">כן, לאפס</button>
-                <button onclick="closeResetModal()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-3 rounded-xl transition-colors">ביטול</button>
+                <button onclick="confirmReset()" class="flex-1 bg-red-500 text-white font-bold py-3 rounded-xl">כן, לאפס</button>
+                <button onclick="closeResetModal()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-3 rounded-xl">ביטול</button>
             </div>
         </div>
     </div>
@@ -364,25 +359,25 @@
     <script>
         const animalMoods = {
             dog: [
-                { img: `<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😿'" alt="עצוב">`, label: 'עצוב ורעב' },
-                { img: `<img src="dog2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐶'" alt="רגיל">`, label: 'רעב' },
-                { img: `<img src="dog3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐕'" alt="שמח">`, label: 'רגיל' },
-                { img: `<img src="dog4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🤩'" alt="מאושר">`, label: 'שמח' },
-                { img: `<img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐶'" alt="מאושר">`, label: 'גדול ומאושר!' }
+                { img: `<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😿'">`, label: 'עצוב ורעב' },
+                { img: `<img src="dog2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐶'">`, label: 'רעב' },
+                { img: `<img src="dog3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐕'">`, label: 'רגיל' },
+                { img: `<img src="dog4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🤩'">`, label: 'שמח' },
+                { img: `<img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐶'">`, label: 'גדול ומאושר!' }
             ],
             cat: [
-                { img: `<img src="cat1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😾'" alt="עצוב">`, label: 'עצוב ורעב' },
-                { img: `<img src="cat2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐱'" alt="רגיל">`, label: 'רעב' },
-                { img: `<img src="cat3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐈'" alt="שמח">`, label: 'רגיל' },
-                { img: `<img src="cat4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😻'" alt="מאושר">`, label: 'שמח' },
-                { img: `<img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐱'" alt="מאושר">`, label: 'גדול ומאושר!' }
+                { img: `<img src="cat1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😾'">`, label: 'עצוב ורעב' },
+                { img: `<img src="cat2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐱'">`, label: 'רעב' },
+                { img: `<img src="cat3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐈'">`, label: 'רגיל' },
+                { img: `<img src="cat4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😻'">`, label: 'שמח' },
+                { img: `<img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐱'">`, label: 'גדול ומאושר!' }
             ],
             rabbit: [
-                { img: `<img src="rabbit1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰💧'" alt="עצוב">`, label: 'עצוב ורעב' },
-                { img: `<img src="rabbit2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰'" alt="רגיל">`, label: 'רעב' },
-                { img: `<img src="rabbit3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐇'" alt="שמח">`, label: 'רגיל' },
-                { img: `<img src="rabbit4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖'" alt="מאושר">`, label: 'שמח' },
-                { img: `<img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='👑🐰'" alt="מאושר">`, label: 'גדול ומאושר!' }
+                { img: `<img src="rabbit1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰💧'">`, label: 'עצוב ורעב' },
+                { img: `<img src="rabbit2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰'">`, label: 'רעב' },
+                { img: `<img src="rabbit3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐇'">`, label: 'רגיל' },
+                { img: `<img src="rabbit4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖'">`, label: 'שמח' },
+                { img: `<img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='👑🐰'">`, label: 'גדול ומאושר!' }
             ]
         };
 
@@ -427,7 +422,6 @@
         };
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
         function playTone(freq, type, duration, delay = 0, vol = 0.1) {
             if (audioCtx.state === 'suspended') audioCtx.resume();
             const osc = audioCtx.createOscillator();
@@ -442,593 +436,265 @@
             osc.stop(audioCtx.currentTime + delay + duration);
         }
 
-        function playSuccessSound() {
-            playTone(523.25, 'sine', 0.1, 0, 0.2); 
-            playTone(659.25, 'sine', 0.3, 0.1, 0.2); 
-        }
+        function playSuccessSound() { playTone(523.25, 'sine', 0.1, 0, 0.2); playTone(659.25, 'sine', 0.3, 0.1, 0.2); }
+        function playComboSound() { playTone(523.25, 'triangle', 0.2, 0, 0.2); playTone(659.25, 'triangle', 0.2, 0.1, 0.2); playTone(783.99, 'triangle', 0.3, 0.2, 0.2); }
+        function playErrorSound() { playTone(150, 'triangle', 0.2, 0, 0.15); }
+        function playBuySound() { playTone(400, 'sine', 0.1, 0, 0.1); playTone(600, 'sine', 0.2, 0.1, 0.1); }
 
-        function playComboSound() {
-            playTone(523.25, 'triangle', 0.2, 0, 0.2); 
-            playTone(659.25, 'triangle', 0.2, 0.1, 0.2); 
-            playTone(783.99, 'triangle', 0.3, 0.2, 0.2); 
-        }
-
-        function playErrorSound() {
-            playTone(150, 'triangle', 0.2, 0, 0.15);
-        }
-
-        function playFanfareSound() {
-            const now = 0;
-            const volume = 0.15;
-            playTone(523.25, 'square', 0.1, now, volume);
-            playTone(659.25, 'square', 0.1, now + 0.15, volume);
-            playTone(783.99, 'square', 0.1, now + 0.3, volume);
-            playTone(1046.50, 'square', 0.4, now + 0.45, volume);
-        }
-
-        function saveData() {
-            localStorage.setItem('animalMathState', JSON.stringify(state));
-        }
-
+        function saveData() { localStorage.setItem('animalMathState', JSON.stringify(state)); }
         function loadData() {
             const saved = localStorage.getItem('animalMathState');
             if (saved) {
-                const parsed = JSON.parse(saved);
-                state = { ...state, ...parsed };
-                if(!state.savedMistakes) state.savedMistakes = [];
-                if(!state.selectedFactors) state.selectedFactors = [];
-                if(!state.range) state.range = 10;
-                if(typeof state.hasPurchased === 'undefined') state.hasPurchased = false;
-                if(!state.petName) state.petName = '';
-                if(!state.combo) state.combo = 0;
-                
-                if(state.hunger <= 15 && state.happiness <= 15) {
-                    state.hasPurchased = false;
-                }
-                
-                const nameInput = document.getElementById('pet-name-input');
-                if (nameInput) nameInput.value = state.petName;
-                
+                state = { ...state, ...JSON.parse(saved) };
                 updateWalletDisplay();
                 updateAnimalVisuals();
                 updatePetNameDisplay();
-                
-                if (state.currentScreen === 'screen-factor') {
-                    renderFactorButtons();
-                    updateContinueButton();
-                }
-
-                if (state.currentScreen) {
-                    showScreen(state.currentScreen, false);
-                    if (state.currentScreen === 'screen-game') {
-                        if (!state.questionPool || state.questionPool.length === 0) {
-                            prepareQuestionPool();
-                        }
-                        updateProgressDisplay();
-                        if (state.questionPool[state.currentQ - 1]) {
-                             generateExerciseFromPool();
-                        } else {
-                            nextQuestion();
-                        }
-                    }
-                }
-            } else {
-                updateWalletDisplay();
+                if (state.currentScreen) showScreen(state.currentScreen, false);
             }
-        }
-
-        function resetAllData() {
-            document.getElementById('reset-modal').classList.remove('hidden');
-        }
-
-        function closeResetModal() {
-            document.getElementById('reset-modal').classList.add('hidden');
-        }
-
-        function confirmReset() {
-            closeResetModal();
-            localStorage.removeItem('animalMathState');
-            location.reload();
         }
 
         function showScreen(id, save = true) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             state.currentScreen = id;
-            if (id === 'screen-factor') {
-                renderFactorButtons();
-                updateContinueButton();
-            }
+            if (id === 'screen-factor') renderFactorButtons();
             if (save) saveData();
         }
+
         function goBack(id) { showScreen(id); }
-        
-        function goToHome() { 
-            if (state.animalType) {
-                updateAnimalVisuals();
-                showScreen('screen-lobby');
-            } else {
-                showScreen('screen-animal');
-            }
-        }
-        
-        function goToSettings() { 
-            showScreen('screen-range'); 
-        }
+        function goToHome() { state.animalType ? showScreen('screen-lobby') : showScreen('screen-animal'); }
+        function goToSettings() { showScreen('screen-range'); }
+        function goToShop() { openShop(); }
+        function openShop() { state.lastScreen = state.currentScreen; showShopTab('food'); showScreen('screen-shop'); }
+        function goBackFromShop() { state.lastScreen ? showScreen(state.lastScreen) : showScreen('screen-lobby'); }
 
-        function goToShop() {
-            openShop();
-        }
-
-        function openShop() { 
-            state.lastScreen = state.currentScreen; 
-            showShopTab('food');
-            showScreen('screen-shop'); 
-        }
-
-        function goBackFromShop() {
-            if (state.lastScreen) {
-                showScreen(state.lastScreen);
-            } else {
-                showScreen('screen-lobby');
-            }
-        }
-
-        function updatePetName(name) {
-            state.petName = name;
-            updatePetNameDisplay();
-            saveData();
-        }
-        
-        function updatePetNameDisplay() {
-            const display = document.getElementById('lobby-pet-name');
-            if (display) display.innerText = state.petName || '';
-        }
+        function updatePetName(name) { state.petName = name; updatePetNameDisplay(); saveData(); }
+        function updatePetNameDisplay() { const el = document.getElementById('lobby-pet-name'); if (el) el.innerText = state.petName || 'החיה שלי'; }
 
         function updateWalletDisplay() {
-            const totalWallet = document.getElementById('total-wallet');
-            if (totalWallet) totalWallet.innerText = state.totalWallet;
-            
-            const hungerMeter = document.getElementById('hunger-meter');
-            if (hungerMeter) hungerMeter.style.width = state.hunger + '%';
-            
-            const happinessMeter = document.getElementById('happiness-meter');
-            if (happinessMeter) happinessMeter.style.width = state.happiness + '%';
-            
-            const hungerVal = document.getElementById('hunger-val');
-            if (hungerVal) hungerVal.innerText = Math.round(state.hunger) + '/100';
-            
-            const happinessVal = document.getElementById('happiness-val');
-            if (happinessVal) happinessVal.innerText = Math.round(state.happiness) + '/100';
-            
+            document.getElementById('total-wallet').innerText = state.totalWallet;
+            document.getElementById('hunger-meter').style.width = state.hunger + '%';
+            document.getElementById('happiness-meter').style.width = state.happiness + '%';
+            document.getElementById('hunger-val').innerText = Math.round(state.hunger) + '/100';
+            document.getElementById('happiness-val').innerText = Math.round(state.happiness) + '/100';
             updateAnimalVisuals();
         }
 
         function updateAnimalVisuals() {
-            const averageMood = (state.hunger + state.happiness) / 2;
-            let index = 0;
-            if (averageMood > 20) index = 1;
-            if (averageMood > 40) index = 2;
-            if (averageMood > 60) index = 3;
-            if (averageMood > 80) index = 4;
-
-            const moodData = animalMoods[state.animalType][index];
-            const visual = (typeof moodData === 'string') ? moodData : moodData.img;
-            const label = (typeof moodData === 'object') ? moodData.label : '';
-
+            const avg = (state.hunger + state.happiness) / 2;
+            let idx = Math.min(4, Math.floor(avg / 20));
+            const mood = animalMoods[state.animalType][idx];
             ['game-animal-icon', 'interact-animal', 'lobby-animal-icon'].forEach(id => {
                 const el = document.getElementById(id);
-                if (el) el.innerHTML = visual;
+                if (el) el.innerHTML = mood.img;
             });
-
-            const moodText = document.getElementById('game-mood-text');
-            if(moodText) moodText.innerText = 'מצב רוח: ' + label;
-            
-            const interactMoodText = document.getElementById('interact-mood-text');
-            if(interactMoodText) interactMoodText.innerText = 'מצב רוח: ' + label;
-
-            const lobbyMoodText = document.getElementById('lobby-mood-text');
-            if(lobbyMoodText) lobbyMoodText.innerText = 'מצב רוח: ' + label;
+            const labels = ['game-mood-text', 'interact-mood-text', 'lobby-mood-text'];
+            labels.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = 'מצב רוח: ' + mood.label;
+            });
         }
 
-        function selectAnimal(type) { 
-            state.animalType = type; 
-            updateAnimalVisuals();
-            showScreen('screen-lobby');
-        }
-
-        function selectRange(r) {
-            state.range = r;
-            state.selectedFactors = [];
-            renderFactorButtons();
-            updateContinueButton();
-            showScreen('screen-factor');
-        }
-
-        function toggleFactor(f) {
-            const index = state.selectedFactors.indexOf(f);
-            if (index > -1) {
-                state.selectedFactors.splice(index, 1);
-            } else {
-                state.selectedFactors.push(f);
-            }
-            renderFactorButtons();
-            updateContinueButton();
-            saveData();
-        }
+        function selectAnimal(t) { state.animalType = t; updateAnimalVisuals(); showScreen('screen-lobby'); }
+        function selectRange(r) { state.range = r; state.selectedFactors = []; showScreen('screen-factor'); }
 
         function renderFactorButtons() {
-            const factorGrid = document.getElementById('factor-grid');
-            if (!factorGrid) return;
-            factorGrid.innerHTML = ''; 
-            
+            const grid = document.getElementById('factor-grid');
+            grid.innerHTML = '';
             for (let i = 1; i <= 9; i++) {
                 const b = document.createElement('button');
                 const isSelected = state.selectedFactors.includes(i);
-                b.className = `option-btn border-2 p-3 md:p-4 rounded-2xl font-black text-xl md:text-2xl transition-all ${isSelected ? 'selected' : 'bg-white border-slate-200 text-slate-700 hover:bg-indigo-50'}`;
+                b.className = `option-btn border-2 p-3 md:p-4 rounded-2xl font-black text-xl ${isSelected ? 'selected' : 'bg-white text-slate-700'}`;
                 b.innerText = i;
-                b.onclick = () => toggleFactor(i);
-                factorGrid.appendChild(b);
+                b.onclick = () => {
+                    const idx = state.selectedFactors.indexOf(i);
+                    idx > -1 ? state.selectedFactors.splice(idx, 1) : state.selectedFactors.push(i);
+                    renderFactorButtons();
+                    updateContinueButton();
+                };
+                grid.appendChild(b);
             }
-            
+            // Comp to 10
             const bComp = document.createElement('button');
-            const isCompSelected = state.selectedFactors.includes('comp10');
-            bComp.className = `option-btn border-2 p-1 rounded-2xl font-bold text-xs md:text-sm flex flex-col items-center justify-center col-span-1 ${isCompSelected ? 'selected' : 'bg-indigo-50 border-indigo-200 text-indigo-600 hover:bg-indigo-100'}`;
-            bComp.innerHTML = "<span class='text-base md:text-lg'>10</span><span class='text-[10px]'>השלמה</span>";
-            bComp.onclick = () => toggleFactor('comp10');
-            factorGrid.appendChild(bComp);
+            const isComp = state.selectedFactors.includes('comp10');
+            bComp.className = `option-btn border-2 p-1 rounded-2xl font-bold text-xs col-span-1 ${isComp ? 'selected' : 'bg-indigo-50 text-indigo-600'}`;
+            bComp.innerHTML = "10<br><span class='text-[10px]'>השלמה</span>";
+            bComp.onclick = () => {
+                const idx = state.selectedFactors.indexOf('comp10');
+                idx > -1 ? state.selectedFactors.splice(idx, 1) : state.selectedFactors.push('comp10');
+                renderFactorButtons();
+                updateContinueButton();
+            };
+            grid.appendChild(bComp);
+            updateContinueButton();
         }
 
         function updateContinueButton() {
             const btn = document.getElementById('btn-continue-mode');
-            if (state.selectedFactors.length > 0) {
-                btn.disabled = false;
-                btn.classList.remove('bg-slate-300');
-                btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-            } else {
-                btn.disabled = true;
-                btn.classList.add('bg-slate-300');
-                btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            }
+            btn.disabled = state.selectedFactors.length === 0;
+            btn.className = `w-full font-black py-4 rounded-2xl shadow-lg text-xl transition-all ${btn.disabled ? 'bg-slate-300 text-white' : 'bg-blue-600 text-white hover:bg-blue-700'}`;
         }
 
-        function selectMode(m) { 
-            state.mode = m; 
-            state.sessionScore = 0;
-            state.currentQ = 0;
-            state.combo = 0; 
-            const sessionCoins = document.getElementById('session-coins');
-            if (sessionCoins) sessionCoins.innerText = 0;
-            prepareQuestionPool(); 
+        function selectMode(m) {
+            state.mode = m; state.sessionScore = 0; state.currentQ = 0; state.combo = 0;
+            document.getElementById('session-coins').innerText = 0;
+            prepareQuestionPool();
             showScreen('screen-game');
             nextQuestion();
         }
 
         function prepareQuestionPool() {
             state.questionPool = [];
-            const roundSize = 12; 
-            let validExercises = [];
-
-            let relevantMistakes = [];
-            if (state.savedMistakes && state.savedMistakes.length > 0) {
-                const filtered = state.savedMistakes.filter(ex => {
-                    return state.selectedFactors.includes(ex.factorCtx);
-                });
-                relevantMistakes = filtered.slice(0, roundSize);
-                relevantMistakes.forEach(rm => {
-                    const idx = state.savedMistakes.indexOf(rm);
-                    if (idx > -1) state.savedMistakes.splice(idx, 1);
-                });
-            }
-
-            state.questionPool = [...relevantMistakes];
-
-            const range = state.range || 10; 
-
-            state.selectedFactors.forEach(factor => {
-                if (factor === 'comp10') {
-                    for (let i = 0; i <= 10; i++) {
-                        const comp = 10 - i;
-                        if (['plus', 'mixed', 'missing'].includes(state.mode)) {
-                            validExercises.push({ type: 'plus', n1: i, n2: comp, ans: 10, factorCtx: 'comp10', forceMissing: true });
-                        }
-                        if (['minus', 'mixed', 'missing'].includes(state.mode)) {
-                            validExercises.push({ type: 'minus', n1: 10, n2: i, ans: comp, factorCtx: 'comp10' });
-                        }
-                    }
+            const roundSize = 12;
+            let valid = [];
+            state.selectedFactors.forEach(f => {
+                if (f === 'comp10') {
+                    for (let i=0; i<=10; i++) valid.push({ type:'plus', n1:i, n2:10-i, ans:10, factorCtx:'comp10', forceMissing:true });
                 } else {
-                    const f = parseInt(factor);
-                    if (['plus', 'mixed', 'missing'].includes(state.mode)) {
-                        for (let i = 0; i <= range; i++) {
-                            if (f + i <= range) {
-                                validExercises.push({ type: 'plus', n1: f, n2: i, ans: f + i, factorCtx: f });
-                                if (f !== i) {
-                                    validExercises.push({ type: 'plus', n1: i, n2: f, ans: i + f, factorCtx: f });
-                                }
-                            }
-                        }
-                    }
-                    if (['minus', 'mixed', 'missing'].includes(state.mode)) {
-                        for (let i = f; i <= range; i++) {
-                            validExercises.push({ type: 'minus', n1: i, n2: f, ans: i - f, factorCtx: f });
-                        }
-                        for (let i = 0; i <= f; i++) {
-                            validExercises.push({ type: 'minus', n1: f, n2: i, ans: f - i, factorCtx: f });
-                        }
+                    for (let i=0; i<=state.range; i++) {
+                        if (f+i <= state.range) valid.push({ type:'plus', n1:f, n2:i, ans:f+i, factorCtx:f });
+                        if (i>=f) valid.push({ type:'minus', n1:i, n2:f, ans:i-f, factorCtx:f });
                     }
                 }
             });
-
-            if (validExercises.length === 0) {
-                validExercises.push({ type: 'plus', n1: 1, n2: 1, ans: 2, factorCtx: 1 });
+            valid.sort(() => Math.random() - 0.5);
+            for (let i=0; i<roundSize; i++) {
+                const q = valid[i % valid.length];
+                state.questionPool.push({ ...q, missing: (state.mode === 'missing' || q.forceMissing) });
             }
-
-            let expandedExercises = [...validExercises];
-            while (expandedExercises.length < roundSize * 2) { 
-                expandedExercises = expandedExercises.concat(validExercises);
-            }
-
-            expandedExercises.sort(() => Math.random() - 0.5);
-
-            const needed = roundSize - state.questionPool.length;
-            for (let i = 0; i < needed; i++) {
-                const exercise = expandedExercises[i];
-                let isMissing = false;
-                if (state.mode === 'missing' || exercise.forceMissing) isMissing = true;
-                state.questionPool.push({ ...exercise, missing: isMissing });
-            }
-            
-            state.questionPool.sort(() => Math.random() - 0.5);
-            saveData();
-        }
-
-        function updateProgressDisplay() {
-            const el = document.getElementById('progress-display');
-            if (el) el.innerText = 'תרגיל ' + state.currentQ + '/' + state.questionPool.length;
         }
 
         function nextQuestion() {
-            state.currentQ++;
-            state.hasMistakeInCurrentQ = false;
+            state.currentQ++; state.hasMistakeInCurrentQ = false;
             if (state.currentQ > state.questionPool.length) {
                 state.totalWallet += state.sessionScore;
                 updateWalletDisplay();
-                showSummary();
+                document.getElementById('final-session-coins').innerText = state.sessionScore;
+                showScreen('screen-summary');
                 return;
             }
-            updateProgressDisplay();
-            generateExerciseFromPool();
-            
-            const badge = document.getElementById('combo-badge');
-            const card = document.getElementById('main-card');
-            
-            if (badge) {
-                if (state.combo >= 3) {
-                    badge.classList.remove('hidden');
-                    if (card) card.classList.add('combo-pulse'); 
-                } else {
-                    badge.classList.add('hidden');
-                    if (card) card.classList.remove('combo-pulse');
-                }
-            }
-            
-            saveData();
-        }
-
-        function generateExerciseFromPool() {
-            const qData = state.questionPool[state.currentQ - 1];
-            if (!qData) return;
-            const display = document.getElementById('math-display');
-            const { type, n1, n2, ans, missing } = qData;
-            state.ans = ans; 
-            
-            if (type === 'plus') {
-                if (missing) {
-                    if (Math.random() > 0.5) { display.innerText = `□ + ${n2} = ${ans}`; state.ans = n1; }
-                    else { display.innerText = `${n1} + □ = ${ans}`; state.ans = n2; }
-                } else {
-                    display.innerText = `${n1} + ${n2} = ?`;
-                }
-            } else if (type === 'minus') {
-                if (missing) {
-                    if (Math.random() > 0.5) { 
-                        display.innerText = `□ - ${n2} = ${ans}`; 
-                        state.ans = n1; 
-                    } else { 
-                        display.innerText = `${n1} - □ = ${ans}`; 
-                        state.ans = n2; 
-                    }
-                } else {
-                    display.innerText = `${n1} - ${n2} = ?`;
-                }
+            document.getElementById('progress-display').innerText = `תרגיל ${state.currentQ}/${state.questionPool.length}`;
+            const q = state.questionPool[state.currentQ-1];
+            const disp = document.getElementById('math-display');
+            state.ans = q.ans;
+            if (q.type === 'plus') {
+                if (q.missing) {
+                    if (Math.random() > 0.5) { disp.innerText = `□ + ${q.n2} = ${q.ans}`; state.ans = q.n1; }
+                    else { disp.innerText = `${q.n1} + □ = ${q.ans}`; state.ans = q.n2; }
+                } else disp.innerText = `${q.n1} + ${q.n2} = ?`;
+            } else {
+                if (q.missing) {
+                    if (Math.random() > 0.5) { disp.innerText = `□ - ${q.n2} = ${q.ans}`; state.ans = q.n1; }
+                    else { disp.innerText = `${q.n1} - □ = ${q.ans}`; state.ans = q.n2; }
+                } else disp.innerText = `${q.n1} - ${q.n2} = ?`;
             }
             renderAnswers();
+            document.getElementById('combo-badge').classList.toggle('hidden', state.combo < 3);
+            document.getElementById('main-card').classList.toggle('combo-pulse', state.combo >= 3);
         }
 
         function renderAnswers() {
-            const correctAnswer = state.ans;
-            const options = new Set([correctAnswer]);
-            
-            while(options.size < 4) {
-                let wrong;
-                const r = Math.random();
-                if (r < 0.3) wrong = correctAnswer + 1;
-                else if (r < 0.6) wrong = correctAnswer - 1;
-                else if (r < 0.8) wrong = correctAnswer + 2;
-                else wrong = Math.floor(Math.random() * (state.range + 1));
-                
-                if (wrong >= 0 && wrong <= state.range && !options.has(wrong)) {
-                    options.add(wrong);
-                }
-            }
-            
-            const optionsArray = Array.from(options).sort(() => Math.random() - 0.5);
-
             const grid = document.getElementById('answers-grid');
             grid.innerHTML = '';
-            optionsArray.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = "option-btn bg-white border-2 border-slate-200 text-4xl font-black py-6 rounded-3xl text-slate-700 hover:bg-blue-50 shadow-sm";
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(opt, btn);
-                grid.appendChild(btn);
+            const opts = new Set([state.ans]);
+            while(opts.size < 4) {
+                let w = state.ans + (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random()*3)+1);
+                if (w >= 0 && w <= 20) opts.add(w);
+            }
+            Array.from(opts).sort(() => Math.random() - 0.5).forEach(o => {
+                const b = document.createElement('button');
+                b.className = "option-btn bg-white border-2 border-slate-200 text-4xl font-black py-6 rounded-3xl text-slate-700 shadow-sm";
+                b.innerText = o;
+                b.onclick = () => {
+                    if (o === state.ans) {
+                        if (!state.hasMistakeInCurrentQ) {
+                            state.combo++;
+                            state.sessionScore += (state.combo >= 3 ? 2 : 1);
+                            document.getElementById('session-coins').innerText = state.sessionScore;
+                            document.getElementById('coin-emitter').innerHTML = `<span class="text-6xl coin-animation">💰</span>`;
+                            state.combo >= 3 ? playComboSound() : playSuccessSound();
+                        } else playSuccessSound();
+                        b.className = "option-btn bg-emerald-500 text-white text-4xl font-black py-6 rounded-3xl shadow-lg";
+                        setTimeout(() => { document.getElementById('coin-emitter').innerHTML = ''; nextQuestion(); }, 700);
+                    } else {
+                        state.combo = 0; state.hasMistakeInCurrentQ = true;
+                        playErrorSound();
+                        b.className = "option-btn bg-red-100 text-red-500 text-4xl font-black py-6 rounded-3xl opacity-50";
+                        document.getElementById('main-card').classList.add('shake');
+                        setTimeout(() => document.getElementById('main-card').classList.remove('shake'), 500);
+                    }
+                };
+                grid.appendChild(b);
             });
         }
 
-        function checkAnswer(val, btn) {
-            const card = document.getElementById('main-card');
-            
-            if (val === state.ans) {
-                if (!state.hasMistakeInCurrentQ) {
-                    state.combo++;
-                    
-                    let coinValue = 1;
-                    if (state.combo >= 3) {
-                        coinValue = 2; 
-                        playComboSound();
-                    } else {
-                        playSuccessSound();
-                    }
-
-                    state.sessionScore += coinValue;
-                    document.getElementById('session-coins').innerText = state.sessionScore;
-                    
-                    const emitter = document.getElementById('coin-emitter');
-                    const comboText = state.combo >= 3 ? `<span class="block text-sm text-orange-500 font-bold">רצף x${state.combo}!</span>` : '';
-                    emitter.innerHTML = `<span class="text-6xl coin-animation">💰</span>${comboText}`;
-                } else {
-                     playSuccessSound();
-                }
-
-                btn.className = "option-btn bg-emerald-500 text-white text-4xl font-black py-6 rounded-3xl border-emerald-700 shadow-lg";
-                document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
-                
-                if (card) {
-                    card.style.transform = "scale(1.02)";
-                    setTimeout(() => card.style.transform = "scale(1)", 150);
-                }
-
-                saveData();
-                setTimeout(() => { document.getElementById('coin-emitter').innerHTML = ''; nextQuestion(); }, 700);
-            } else {
-                playErrorSound();
-                state.combo = 0; 
-                const badge = document.getElementById('combo-badge');
-                if (badge) badge.classList.add('hidden'); 
-                
-                if (card) {
-                    card.classList.add('shake');
-                    setTimeout(() => card.classList.remove('shake'), 500);
-                }
-
-                if (!state.hasMistakeInCurrentQ) {
-                    state.hasMistakeInCurrentQ = true;
-                    const currentQuestion = state.questionPool[state.currentQ - 1];
-                    state.savedMistakes.push(currentQuestion);
-                    saveData();
-                }
-                btn.className = "option-btn bg-red-100 text-red-500 text-4xl font-black py-6 rounded-3xl border-red-200 opacity-50";
-                btn.disabled = true;
-            }
-        }
-        
-        function showSummary() {
-            const finalCoinsEl = document.getElementById('final-session-coins');
-            if (finalCoinsEl) finalCoinsEl.innerText = state.sessionScore;
-            showScreen('screen-summary');
-        }
-
-        function showShopTab(tab) {
-            const foodBtn = document.getElementById('tab-food');
-            const toysBtn = document.getElementById('tab-toys');
-            if (tab === 'food') {
-                foodBtn.className = "flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white";
-                toysBtn.className = "flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400";
-                renderShopItems(shopData.food, 'food');
-            } else {
-                toysBtn.className = "flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white";
-                foodBtn.className = "flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400";
-                renderShopItems(shopData.toys, 'toys');
-            }
-        }
-
-        function renderShopItems(items, category) {
+        function showShopTab(t) {
+            document.getElementById('tab-food').className = t === 'food' ? "flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white" : "flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400";
+            document.getElementById('tab-toys').className = t === 'toys' ? "flex-1 py-2 rounded-xl font-bold border-2 border-blue-500 bg-blue-500 text-white" : "flex-1 py-2 rounded-xl font-bold border-2 border-blue-100 text-blue-400";
             const grid = document.getElementById('shop-items');
             grid.innerHTML = '';
-            items.forEach(item => {
-                const canAfford = state.totalWallet >= item.price;
-                const div = document.createElement('div');
-                div.className = `p-4 rounded-2xl border-2 flex flex-col items-center gap-1 transition-all ${canAfford ? 'bg-white border-slate-100 hover:border-yellow-400 cursor-pointer shadow-sm' : 'bg-slate-100 border-transparent opacity-60'}`;
-                div.onclick = canAfford ? () => buyItem(item, category) : null;
-                div.innerHTML = `
-                    <span class="text-4xl">${item.icon}</span>
-                    <span class="font-bold text-slate-800 text-sm">${item.name}</span>
-                    <span class="text-xs font-black text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded-full">💰 ${item.price}</span>
-                `;
-                grid.appendChild(div);
+            shopData[t].forEach(item => {
+                const aff = state.totalWallet >= item.price;
+                const d = document.createElement('div');
+                d.className = `p-4 rounded-2xl border-2 flex flex-col items-center gap-1 ${aff ? 'bg-white border-slate-100 cursor-pointer shadow-sm hover:border-yellow-400' : 'bg-slate-100 opacity-60'}`;
+                d.onclick = aff ? () => buyItem(item, t) : null;
+                d.innerHTML = `<span class="text-4xl">${item.icon}</span><span class="font-bold text-sm">${item.name}</span><span class="text-xs font-black text-yellow-600">💰 ${item.price}</span>`;
+                grid.appendChild(d);
             });
         }
 
-        function buyItem(item, category) {
-            if (state.totalWallet < item.price) return;
-            
+        function buyItem(item, cat) {
+            playBuySound();
             state.totalWallet -= item.price;
-            
-            let boost = (item.price / 10) * 25; 
-
-            if (!state.hasPurchased) {
-                state.hasPurchased = true;
-                
-                let currentStatVal = (category === 'food') ? state.hunger : state.happiness;
-                let otherStatVal = (category === 'food') ? state.happiness : state.hunger;
-                let currentAvg = (currentStatVal + otherStatVal) / 2;
-
-                if (currentAvg < 25) {
-                    const targetSum = 52; 
-                    const neededStat = targetSum - otherStatVal;
-                    const minBoost = neededStat - currentStatVal;
-                    
-                    if (boost < minBoost) {
-                        boost = minBoost; 
-                    }
-                }
-            }
-
-            if (category === 'food') {
-                state.hunger = Math.min(100, state.hunger + boost);
-            } else {
-                state.happiness = Math.min(100, state.happiness + boost);
-            }
-            
+            let boost = 25;
+            cat === 'food' ? state.hunger = Math.min(100, state.hunger + boost) : state.happiness = Math.min(100, state.happiness + boost);
             saveData();
             updateWalletDisplay();
-            
-            const interactItem = document.getElementById('interact-item');
-            const interactAnimal = document.getElementById('interact-animal');
-            const interactText = document.getElementById('interact-text');
+
+            const itemEl = document.getElementById('interact-item');
+            const animalEl = document.getElementById('interact-animal');
+            const textEl = document.getElementById('interact-text');
             const backBtn = document.getElementById('back-from-interact');
-            
-            interactItem.innerText = item.icon;
-            interactItem.classList.remove('item-swallow');
-            interactAnimal.classList.remove('animal-react');
-            interactText.classList.add('opacity-0');
+
+            itemEl.innerText = item.icon;
+            itemEl.classList.remove('item-swallow');
+            animalEl.classList.remove('animal-react');
+            textEl.classList.add('opacity-0');
             backBtn.classList.add('opacity-0', 'pointer-events-none');
-            
+            itemEl.style.opacity = "1";
+
             showScreen('screen-interact');
-            
+
+            // Start Animation sequence
             setTimeout(() => {
-                interactItem.classList.add('item-swallow');
+                itemEl.classList.add('item-swallow');
+                
+                // When item hits pet
                 setTimeout(() => {
-                    interactAnimal.classList.add('animal-react');
-                    interactText.innerText = (category === 'food') ? "יאמי! איזה טעים!" : "איזה כיף! תודה!";
-                    interactText.classList.remove('opacity-0');
+                    animalEl.classList.add('animal-react');
+                    textEl.innerText = cat === 'food' ? "יאמי! איזה טעים!" : "איזה כיף! תודה!";
+                    textEl.classList.remove('opacity-0');
                     backBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    
+                    // Create sparkles
+                    for(let i=0; i<8; i++) {
+                        const s = document.createElement('span');
+                        s.innerText = cat === 'food' ? '❤️' : '✨';
+                        s.className = 'sparkle text-2xl';
+                        s.style.setProperty('--tw-x', (Math.random()*200-100)+'px');
+                        s.style.setProperty('--tw-y', (Math.random()*(-200))+'px');
+                        animalEl.appendChild(s);
+                        setTimeout(() => s.remove(), 1000);
+                    }
                 }, 500);
-            }, 300);
+            }, 100);
         }
 
-        window.onload = loadData;
+        function resetAllData() { document.getElementById('reset-modal').classList.remove('hidden'); }
+        function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
+        function confirmReset() { localStorage.removeItem('animalMathState'); location.reload(); }
 
+        window.onload = loadData;
     </script>
 </body>
 </html>
