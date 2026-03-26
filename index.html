@@ -344,7 +344,7 @@
 
     <!-- Modal Reset -->
     <div id="reset-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-center border-4 border-red-100">
+        <div class="bg-white rounded-3xl p-8 max-sm w-full shadow-2xl text-center border-4 border-red-100">
             <div class="text-5xl mb-4">⚠️</div>
             <h3 class="text-2xl font-black text-slate-800 mb-2">לאפס הכל?</h3>
             <p class="text-slate-600 mb-6 font-bold">הכסף, החיה וכל ההתקדמות יימחקו לחלוטין.</p>
@@ -547,11 +547,23 @@
             let valid = [];
             state.selectedFactors.forEach(f => {
                 if (f === 'comp10') {
-                    for (let i=0; i<=10; i++) valid.push({ type:'plus', n1:i, n2:10-i, ans:10, factorCtx:'comp10', forceMissing:true });
+                    // Completion to 10 (always plus in this logic, but follows mode)
+                    if (state.mode === 'plus' || state.mode === 'mixed' || state.mode === 'missing') {
+                        for (let i=0; i<=10; i++) valid.push({ type:'plus', n1:i, n2:10-i, ans:10, factorCtx:'comp10', forceMissing:true });
+                    }
+                    if (state.mode === 'minus' || state.mode === 'mixed') {
+                         for (let i=0; i<=10; i++) valid.push({ type:'minus', n1:10, n2:i, ans:10-i, factorCtx:'comp10' });
+                    }
                 } else {
                     for (let i=0; i<=state.range; i++) {
-                        if (f+i <= state.range) valid.push({ type:'plus', n1:f, n2:i, ans:f+i, factorCtx:f });
-                        if (i>=f) valid.push({ type:'minus', n1:i, n2:f, ans:i-f, factorCtx:f });
+                        // Check if addition matches mode
+                        if (state.mode === 'plus' || state.mode === 'mixed' || state.mode === 'missing') {
+                            if (f+i <= state.range) valid.push({ type:'plus', n1:f, n2:i, ans:f+i, factorCtx:f });
+                        }
+                        // Check if subtraction matches mode
+                        if (state.mode === 'minus' || state.mode === 'mixed' || state.mode === 'missing') {
+                            if (i>=f) valid.push({ type:'minus', n1:i, n2:f, ans:i-f, factorCtx:f });
+                        }
                     }
                 }
             });
