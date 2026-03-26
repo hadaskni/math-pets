@@ -324,21 +324,20 @@
                 <div id="shop-items" class="grid grid-cols-2 gap-3 h-[280px] overflow-y-auto p-2 border-2 border-slate-100 rounded-2xl bg-slate-50/50"></div>
             </div>
 
-            <!-- Screen: Interaction (Animates here) -->
+            <!-- Screen: Interaction -->
             <div id="screen-interact" class="screen w-full overflow-hidden">
                 <div class="relative py-12 flex flex-col items-center justify-center min-h-[350px] md:min-h-[440px]">
-                    <!-- The Item that falls -->
+                    <!-- הפריט שנופל -->
                     <div id="interact-item" class="text-7xl md:text-8xl absolute z-20 transition-all opacity-0"></div>
                     
-                    <!-- The Pet -->
+                    <!-- החיה -->
                     <div id="interact-animal" class="h-40 w-40 md:h-52 md:w-52 flex items-center justify-center text-9xl z-10 mt-16 transition-all relative">
-                        <!-- Sparkles will be added here via JS -->
                     </div>
                     
                     <div id="interact-mood-text" class="text-lg font-bold text-slate-500 mt-2"></div>
                     <div id="interact-text" class="mt-4 text-2xl md:text-3xl font-black text-indigo-600 opacity-0 transition-opacity text-center">יאמי!</div>
                 </div>
-                <button id="back-from-interact" onclick="goBackFromShop()" class="w-full bg-slate-800 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl mt-4 opacity-0 pointer-events-none transition-opacity">חזרה למשחק</button>
+                <button id="back-from-interact" onclick="goBackFromShop()" class="w-full bg-slate-800 text-white font-black py-4 rounded-2xl shadow-xl text-lg md:text-xl mt-4 opacity-0 pointer-events-none transition-opacity">חזרה</button>
             </div>
         </div>
     </div>
@@ -514,7 +513,6 @@
                 };
                 grid.appendChild(b);
             }
-            // Comp to 10
             const bComp = document.createElement('button');
             const isComp = state.selectedFactors.includes('comp10');
             bComp.className = `option-btn border-2 p-1 rounded-2xl font-bold text-xs col-span-1 ${isComp ? 'selected' : 'bg-indigo-50 text-indigo-600'}`;
@@ -648,9 +646,10 @@
             state.totalWallet -= item.price;
             let boost = 25;
             cat === 'food' ? state.hunger = Math.min(100, state.hunger + boost) : state.happiness = Math.min(100, state.happiness + boost);
+            
+            // עדכון המדדים בזיכרון, אבל לא נעדכן ויזואלית את הפרצוף מיד
             saveData();
-            updateWalletDisplay();
-
+            
             const itemEl = document.getElementById('interact-item');
             const animalEl = document.getElementById('interact-animal');
             const textEl = document.getElementById('interact-text');
@@ -663,20 +662,25 @@
             backBtn.classList.add('opacity-0', 'pointer-events-none');
             itemEl.style.opacity = "1";
 
+            // מציג את מסך האינטראקציה עם הפרצוף הנוכחי (לפני האוכל)
+            updateAnimalVisuals(); 
             showScreen('screen-interact');
 
-            // Start Animation sequence
             setTimeout(() => {
                 itemEl.classList.add('item-swallow');
                 
-                // When item hits pet
+                // רגע הפגיעה בחיה
                 setTimeout(() => {
+                    // שינוי לפרצוף הכי שמח (מספר 5 - אינדקס 4)
+                    const maxMood = animalMoods[state.animalType][4];
+                    animalEl.innerHTML = maxMood.img;
+                    
                     animalEl.classList.add('animal-react');
                     textEl.innerText = cat === 'food' ? "יאמי! איזה טעים!" : "איזה כיף! תודה!";
                     textEl.classList.remove('opacity-0');
                     backBtn.classList.remove('opacity-0', 'pointer-events-none');
                     
-                    // Create sparkles
+                    // אפקט ניצוצות
                     for(let i=0; i<8; i++) {
                         const s = document.createElement('span');
                         s.innerText = cat === 'food' ? '❤️' : '✨';
@@ -686,6 +690,12 @@
                         animalEl.appendChild(s);
                         setTimeout(() => s.remove(), 1000);
                     }
+
+                    // לאחר השהיה של 1.5 שניות, מחזירים את הפרצוף למצב המקורי (לפי המדדים החדשים)
+                    setTimeout(() => {
+                        updateWalletDisplay(); // זה יעדכן את הארנק ואת הפרצוף לפי המדד האמיתי
+                    }, 1500);
+
                 }, 500);
             }, 100);
         }
