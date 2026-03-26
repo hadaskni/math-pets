@@ -169,19 +169,20 @@
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
                     <button onclick="selectAnimal('dog')" class="option-btn bg-blue-50 hover:bg-blue-100 p-4 md:p-6 rounded-3xl border-2 border-blue-200 group">
                         <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='<span class=&quot;text-4xl md:text-6xl&quot;>🐶</span>'">
+                            <!-- שימוש ב-Backticks במקום בגרשיים בתוך ה-onerror כדי למנוע שגיאות תכנות -->
+                            <img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐶</span>`">
                         </span>
                         <span class="font-bold text-blue-600 text-sm md:text-base">כלבלב</span>
                     </button>
                     <button onclick="selectAnimal('cat')" class="option-btn bg-pink-50 hover:bg-pink-100 p-4 md:p-6 rounded-3xl border-2 border-pink-200 group">
                         <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='<span class=&quot;text-4xl md:text-6xl&quot;>🐱</span>'">
+                            <img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐱</span>`">
                         </span>
                         <span class="font-bold text-pink-600 text-sm md:text-base">חתלתול</span>
                     </button>
                     <button onclick="selectAnimal('rabbit')" class="option-btn bg-emerald-50 hover:bg-emerald-100 p-4 md:p-6 rounded-3xl border-2 border-emerald-200 group">
                         <span class="h-16 w-16 md:h-24 md:w-24 block mb-2 mx-auto drop-shadow-md transition-transform group-hover:scale-110">
-                            <img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='<span class=&quot;text-4xl md:text-6xl&quot;>🐰</span>'">
+                            <img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=`<span class='text-4xl md:text-6xl'>🐰</span>`">
                         </span>
                         <span class="font-bold text-emerald-600 text-sm md:text-base">ארנב</span>
                     </button>
@@ -238,7 +239,7 @@
 
             <!-- Screen: Factor Select -->
             <div id="screen-factor" class="screen w-full relative">
-                <button onclick="goBack('screen-lobby')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
+                <button onclick="goBack('screen-range')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-6 text-center">בחר כפולות של:</h2>
                 <p class="text-sm text-slate-500 mb-6">אפשר לבחור כמה ביחד!</p>
                 
@@ -362,27 +363,28 @@
     </div>
 
     <script>
+        // שימוש ב-backticks מתקן את השגיאה של "Unexpected identifier" לחלוטין
         const animalMoods = {
             dog: [
-                { img: '<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'😿\'" alt="עצוב">', label: 'עצוב ורעב' },
-                { img: '<img src="dog2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐶\'" alt="רגיל">', label: 'רעב' },
-                { img: '<img src="dog3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐕\'" alt="שמח">', label: 'רגיל' },
-                { img: '<img src="dog4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🤩\'" alt="מאושר">', label: 'שמח' },
-                { img: '<img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'💖🐶\'" alt="מאושר">', label: 'גדול ומאושר!' }
+                { img: `<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😿'" alt="עצוב">`, label: 'עצוב ורעב' },
+                { img: `<img src="dog2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐶'" alt="רגיל">`, label: 'רעב' },
+                { img: `<img src="dog3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐕'" alt="שמח">`, label: 'רגיל' },
+                { img: `<img src="dog4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🤩'" alt="מאושר">`, label: 'שמח' },
+                { img: `<img src="dog5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐶'" alt="מאושר">`, label: 'גדול ומאושר!' }
             ],
             cat: [
-                { img: '<img src="cat1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'😾\'" alt="עצוב">', label: 'עצוב ורעב' },
-                { img: '<img src="cat2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐱\'" alt="רגיל">', label: 'רעב' },
-                { img: '<img src="cat3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐈\'" alt="שמח">', label: 'רגיל' },
-                { img: '<img src="cat4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'😻\'" alt="מאושר">', label: 'שמח' },
-                { img: '<img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'💖🐱\'" alt="מאושר">', label: 'גדול ומאושר!' }
+                { img: `<img src="cat1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😾'" alt="עצוב">`, label: 'עצוב ורעב' },
+                { img: `<img src="cat2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐱'" alt="רגיל">`, label: 'רעב' },
+                { img: `<img src="cat3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐈'" alt="שמח">`, label: 'רגיל' },
+                { img: `<img src="cat4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😻'" alt="מאושר">`, label: 'שמח' },
+                { img: `<img src="cat5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖🐱'" alt="מאושר">`, label: 'גדול ומאושר!' }
             ],
             rabbit: [
-                { img: '<img src="rabbit1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐰💧\'" alt="עצוב">', label: 'עצוב ורעב' },
-                { img: '<img src="rabbit2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐰\'" alt="רגיל">', label: 'רעב' },
-                { img: '<img src="rabbit3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'🐇\'" alt="שמח">', label: 'רגיל' },
-                { img: '<img src="rabbit4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'💖\'" alt="מאושר">', label: 'שמח' },
-                { img: '<img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML=\'👑🐰\'" alt="מאושר">', label: 'גדול ומאושר!' }
+                { img: `<img src="rabbit1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰💧'" alt="עצוב">`, label: 'עצוב ורעב' },
+                { img: `<img src="rabbit2.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐰'" alt="רגיל">`, label: 'רעב' },
+                { img: `<img src="rabbit3.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='🐇'" alt="שמח">`, label: 'רגיל' },
+                { img: `<img src="rabbit4.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='💖'" alt="מאושר">`, label: 'שמח' },
+                { img: `<img src="rabbit5.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='👑🐰'" alt="מאושר">`, label: 'גדול ומאושר!' }
             ]
         };
 
@@ -392,6 +394,7 @@
             animalType: 'dog',
             petName: '', 
             selectedFactors: [],
+            range: 10,
             mode: '',
             currentQ: 0,
             ans: 0,
@@ -476,6 +479,7 @@
                 state = { ...state, ...parsed };
                 if(!state.savedMistakes) state.savedMistakes = [];
                 if(!state.selectedFactors) state.selectedFactors = [];
+                if(!state.range) state.range = 10;
                 if(typeof state.hasPurchased === 'undefined') state.hasPurchased = false;
                 if(!state.petName) state.petName = '';
                 if(!state.combo) state.combo = 0;
@@ -551,8 +555,7 @@
         }
         
         function goToSettings() { 
-            state.selectedFactors = [];
-            showScreen('screen-factor'); 
+            showScreen('screen-range'); 
         }
 
         function goToShop() {
@@ -636,6 +639,14 @@
             showScreen('screen-lobby');
         }
 
+        function selectRange(r) {
+            state.range = r;
+            state.selectedFactors = [];
+            renderFactorButtons();
+            updateContinueButton();
+            showScreen('screen-factor');
+        }
+
         function toggleFactor(f) {
             const index = state.selectedFactors.indexOf(f);
             if (index > -1) {
@@ -714,7 +725,7 @@
 
             state.questionPool = [...relevantMistakes];
 
-            const range = 20; 
+            const range = state.range || 10; 
 
             state.selectedFactors.forEach(factor => {
                 if (factor === 'comp10') {
@@ -846,9 +857,9 @@
                 if (r < 0.3) wrong = correctAnswer + 1;
                 else if (r < 0.6) wrong = correctAnswer - 1;
                 else if (r < 0.8) wrong = correctAnswer + 2;
-                else wrong = Math.floor(Math.random() * 21);
+                else wrong = Math.floor(Math.random() * (state.range + 1));
                 
-                if (wrong >= 0 && wrong <= 20 && !options.has(wrong)) {
+                if (wrong >= 0 && wrong <= state.range && !options.has(wrong)) {
                     options.add(wrong);
                 }
             }
