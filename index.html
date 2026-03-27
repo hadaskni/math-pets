@@ -66,7 +66,6 @@
             100% { transform: scale(1) translateY(-100px); opacity: 0; }
         }
 
-        /* אנימציית הפריט שנופל לחיה */
         .item-swallow {
             animation: itemMoveToAnimal 0.8s cubic-bezier(0.5, 0, 0.5, 1) forwards;
         }
@@ -77,7 +76,6 @@
             100% { transform: translateY(120px) scale(0) rotate(-15deg); opacity: 0; }
         }
 
-        /* אנימציית קפיצה של החיה */
         .animal-react {
             animation: animalBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -87,7 +85,6 @@
             50% { transform: scale(1.15) translateY(-25px); }
         }
 
-        /* אפקט לבבות/ניצוצות */
         .sparkle {
             position: absolute;
             pointer-events: none;
@@ -117,7 +114,7 @@
             100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
         }
         
-        .meter-fill { transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .meter-fill { transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .control-btn {
             background: rgba(255, 255, 255, 0.9);
@@ -132,13 +129,11 @@
         .control-btn:hover { transform: scale(1.05); }
         .control-btn:active { transform: scale(0.95); }
 
-        /* מסתיר את הטוען מראש */
         #preloader { position: absolute; width: 0; height: 0; overflow: hidden; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <!-- Preloader Section -->
     <div id="preloader">
         <img src="dog1.png"> <img src="dog2.png"> <img src="dog3.png"> <img src="dog4.png"> <img src="dog5.png">
         <img src="cat1.png"> <img src="cat2.png"> <img src="cat3.png"> <img src="cat4.png"> <img src="cat5.png">
@@ -146,7 +141,6 @@
     </div>
 
     <div class="max-w-xl w-full mx-auto relative">
-        <!-- Top Bar -->
         <div class="fixed top-2 left-2 right-2 z-50 flex justify-between items-start pointer-events-none px-1">
             <div class="flex flex-col gap-1 pointer-events-auto">
                 <div class="bg-white/90 backdrop-blur px-3 py-1 rounded-full border-2 border-yellow-400 shadow-lg flex items-center gap-2 w-fit transform scale-90 origin-top-left md:scale-100">
@@ -199,7 +193,6 @@
 
         <div id="main-card" class="card text-center relative mt-20 md:mt-24 mx-auto">
             
-            <!-- Screen: Animal Select -->
             <div id="screen-animal" class="screen active w-full">
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-6 mt-2 text-center">בחר חבר לדרך!</h2>
                 <div class="grid grid-cols-3 gap-3 md:gap-4">
@@ -224,7 +217,6 @@
                 </div>
             </div>
 
-            <!-- Screen: Lobby -->
             <div id="screen-lobby" class="screen w-full">
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-4 text-center">הבית של <span id="lobby-pet-name"></span></h2>
                 <div class="mb-4">
@@ -245,7 +237,6 @@
                 </div>
             </div>
 
-            <!-- Screen: Range Select -->
             <div id="screen-range" class="screen w-full relative">
                 <button onclick="goBack('screen-lobby')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-8 mt-8 text-center">עד איזה מספר נתרגל?</h2>
@@ -260,7 +251,6 @@
                 <button onclick="resetAllData()" class="mt-12 flex items-center justify-center gap-2 mx-auto px-6 py-3 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors font-bold text-xs">איפוס משחק והתחלה מחדש</button>
             </div>
 
-            <!-- Screen: Factor Select -->
             <div id="screen-factor" class="screen w-full relative">
                 <button onclick="goBack('screen-range')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 mt-6 text-center">בחר תרגול:</h2>
@@ -269,7 +259,6 @@
                 <button id="btn-continue-mode" onclick="showScreen('screen-mode')" class="w-full bg-slate-300 text-white font-black py-4 rounded-2xl shadow-lg text-lg md:text-xl transition-all" disabled>המשך לבחירת סוג ➔</button>
             </div>
 
-            <!-- Screen: Mode Select -->
             <div id="screen-mode" class="screen w-full relative">
                 <button onclick="goBack('screen-factor')" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-8 mt-8 text-center">סוג התרגילים:</h2>
@@ -281,7 +270,6 @@
                 </div>
             </div>
 
-            <!-- Screen: The Game -->
             <div id="screen-game" class="screen w-full">
                 <div class="flex flex-col items-center mb-4 md:mb-6 w-full">
                     <div class="flex justify-between items-center w-full">
@@ -306,7 +294,6 @@
                 <div id="answers-grid" class="grid grid-cols-2 gap-3 md:gap-4 ltr w-full"></div>
             </div>
 
-            <!-- Screen: Summary -->
             <div id="screen-summary" class="screen w-full">
                 <h2 id="summary-title" class="text-3xl md:text-4xl font-black text-slate-800 mb-4 mt-4 text-center">סיימת!</h2>
                 <p class="text-lg md:text-xl text-slate-600 mb-4 text-center">אספת בסבב זה:</p>
@@ -323,7 +310,6 @@
                 </div>
             </div>
 
-            <!-- Screen: Shop -->
             <div id="screen-shop" class="screen w-full relative">
                 <button onclick="goBackFromShop()" class="absolute top-0 right-0 text-slate-400 hover:text-slate-600 p-2 text-sm font-bold">➜ חזור</button>
                 <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-4 md:mb-6 mt-8 text-center">חנות החיות 🛍️</h2>
@@ -334,16 +320,11 @@
                 <div id="shop-items" class="grid grid-cols-2 gap-3 h-[280px] overflow-y-auto p-2 border-2 border-slate-100 rounded-2xl bg-slate-50/50"></div>
             </div>
 
-            <!-- Screen: Interaction -->
             <div id="screen-interact" class="screen w-full overflow-hidden">
                 <div class="relative py-12 flex flex-col items-center justify-center min-h-[400px] md:min-h-[500px]">
-                    <!-- הפריט שנופל -->
                     <div id="interact-item" class="text-7xl md:text-8xl absolute z-20 transition-all opacity-0" style="top: 0;"></div>
-                    
-                    <!-- החיה -->
                     <div id="interact-animal" class="h-60 w-60 md:h-80 md:w-80 flex items-center justify-center text-9xl md:text-[12rem] z-10 mt-16 transition-all relative">
                     </div>
-                    
                     <div id="interact-mood-text" class="text-lg font-bold text-slate-500 mt-2"></div>
                     <div id="interact-text" class="mt-4 text-2xl md:text-3xl font-black text-indigo-600 opacity-0 transition-opacity text-center">יאמי!</div>
                 </div>
@@ -352,9 +333,8 @@
         </div>
     </div>
 
-    <!-- Modal Reset -->
     <div id="reset-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-sm w-full shadow-2xl text-center border-4 border-red-100">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-center border-4 border-red-100">
             <div class="text-5xl mb-4">⚠️</div>
             <h3 class="text-2xl font-black text-slate-800 mb-2">לאפס הכל?</h3>
             <p class="text-slate-600 mb-6 font-bold">הכסף, החיה וכל ההתקדמות יימחקו לחלוטין.</p>
@@ -490,8 +470,17 @@
         }
 
         function updateAnimalVisuals() {
+            // לוגיקה משופרת: מצב הרוח הוא ממוצע של שובע ושימחה.
+            // עכשיו הסקלה יותר דינמית כדי שיהיה יותר קל להגיע למצבים שמחים.
             const avg = (state.hunger + state.happiness) / 2;
-            let idx = Math.min(4, Math.floor(avg / 20));
+            
+            let idx = 0;
+            if (avg < 25) idx = 0;      // עצוב ורעב
+            else if (avg < 45) idx = 1; // רעב
+            else if (avg < 65) idx = 2; // רגיל
+            else if (avg < 85) idx = 3; // שמח
+            else idx = 4;               // גדול ומאושר
+            
             const mood = animalMoods[state.animalType][idx];
             ['game-animal-icon', 'interact-animal', 'lobby-animal-icon'].forEach(id => {
                 const el = document.getElementById(id);
