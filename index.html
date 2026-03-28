@@ -351,6 +351,9 @@
     </div>
 
     <script>
+        // השורה הקריטית שהייתה חסרה וגרמה לקריסה של המשחק!
+        const STORAGE_KEY = 'animalMathState';
+
         const animalMoods = {
             dog: [
                 { img: `<img src="dog1.png" class="w-full h-full object-contain mix-blend-multiply" onerror="this.outerHTML='😿'">`, label: 'עצוב ורעב' },
@@ -438,9 +441,11 @@
 
         function saveData() { 
             state.lastUpdate = Date.now(); // עדכון זמן השמירה האחרון
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));}
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
         function loadData() {
-            const saved = localStorage.getItem('animalMathState');
+            const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
                 state = { ...state, ...JSON.parse(saved) };
                // חישוב ירידת מדדים בזמן שהאפליקציה הייתה סגורה
@@ -719,19 +724,19 @@
 
         function resetAllData() { document.getElementById('reset-modal').classList.remove('hidden'); }
         function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
-        function confirmReset() { localStorage.removeItem('animalMathState'); location.reload(); }
+        function confirmReset() { localStorage.removeItem(STORAGE_KEY); location.reload(); }
 
         window.onload = loadData;
 
         // טיימר שמוריד נקודה בכל דקה של משחק פעיל
-    setInterval(() => {
-    state.hunger = Math.max(0, state.hunger - 1);
-    state.happiness = Math.max(0, state.happiness - 1);
-    state.lastUpdate = Date.now();
-    
-    updateWalletDisplay(); // עדכון התצוגה של המדים והפרצוף
-    saveData();
-}, 60000); // 60000 מילי-שניות = דקה אחת
+        setInterval(() => {
+            state.hunger = Math.max(0, state.hunger - 1);
+            state.happiness = Math.max(0, state.happiness - 1);
+            state.lastUpdate = Date.now();
+            
+            updateWalletDisplay(); // עדכון התצוגה של המדים והפרצוף
+            saveData();
+        }, 60000); // 60000 מילי-שניות = דקה אחת
 
     </script>
 </body>
